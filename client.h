@@ -5,8 +5,7 @@
 #include <list>
 #include "user.h"
 
-class Client
-{
+class Client: public User{
 public:
     Client();
     Client(const Client &other);

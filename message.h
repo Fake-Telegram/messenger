@@ -3,8 +3,7 @@
 #include <ctring>
 #include <ctime>
 
-class Message
-{
+class Message{
 public:
     Message();
     Message(const Message &other) = default;
