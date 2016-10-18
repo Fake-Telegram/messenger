@@ -33,7 +33,7 @@ void User::change_status()
 {
 	status = !status;
 }
-bool operator==(const User& left, const User& right)
+bool User::operator==(const User& right)
 {
-	return left.login == right.login;
+    return login == right.login;
 }

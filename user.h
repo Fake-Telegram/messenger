@@ -14,7 +14,7 @@ protected:
 	bool status;
 	unsigned userID;
 public:
-	explicit User(string, string);//????
+    explicit User(string login, string name);//????
 	//User() = default;// { User("", ""); };// { cout << "wtf"; };
 	//User(const User &) = delete;
 	//User &operator=(User);
@@ -25,6 +25,6 @@ public:
 	void change_name(string);
 	void change_status();
 	virtual ~User();
-	friend bool operator==(const User& left, const User& right);
+    bool operator==(const User& right);
 };
 #endif // USER_H

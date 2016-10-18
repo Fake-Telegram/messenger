@@ -1,11 +1,11 @@
 #include "client.h"
 
-Client::Client(string _name, string _login, string _password) : User(_name, _login), password(_password){ cout << "newUser"; }
+Client::Client(const string &_name,const string& _login, const string& _password) : User(_name, _login), password(_password){ cout << "newUser"; }
 Client::~Client()
 {
 	cout << "Delete Client";
 }
-inline bool Client::add_friend(const User newUser)
+inline bool Client::add_friend(const User &newUser)
 {
 	try
 	{
@@ -58,10 +58,10 @@ bool Client::delete_chat(const User &oldUser)
 	}
 	return true;
 }
-bool Client::change_password(string curr_pas, string new_pas)
+bool Client::change_password(const string& curr_pas,const string& new_pas)
 {
 	if (password != curr_pas) return false;
 	password = new_pas;	//send to server???
 	return true;
 }
-bool Client::autorization(string){ cout << "df"; return true; }//?????????????????????????
+bool Client::autorization(const string&){ cout << "df"; return true; }//?????????????????????????
