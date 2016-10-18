@@ -1,17 +1,24 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
-#include <ctring>
+
+#include <iostream>
 #include <ctime>
+#include <string>
+using namespace std;
 
 class Message{
 public:
-    Message();
+    Message(string);
+	Message() :text(""){};
     Message(const Message &other) = default;
+	string get_text();
+	tm get_datetime();
+	bool getMessage(ostream &);
     ~Message();
 private:
-    unsigned _id;
-    string _text;
-    tm _datetime;
+    unsigned messageID;
+    string text;
+    tm datetime;
 };
 
 #endif // MESSAGE_H
