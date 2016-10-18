@@ -1,41 +1,28 @@
+//#pragma once
 #ifndef CLIENT_H
 #define CLIENT_H
 
 #include <list>
 #include "user.h"
+#include "chat.h"
 
 class Client :
 	virtual public User//??????
 {
 private:
-	std::string password;
-	std::list<User> friends;
-	//std::list<Chat> room;
+	string password;
+	list<User> friends;
+	list<Chat> room;
 public:
-	Client(std::string, std::string, std::string);
+	Client(string, string, string);
 	~Client();
 	inline bool add_friend(User);//inline --experiment???
-	bool delete_friend(User);
-	bool add_chat(User);
-	//bool open_chat(Chat);//??????
-	//bool close_chat(Chat);//??????
-	bool delete_chat(User);
-	unsigned change_password(std::string, std::string);
-	bool autorization(std::string);
+	bool delete_friend(const User&);
+	bool add_chat(const User&);
+	bool open_chat(const Chat&);//??????
+	bool close_chat(const Chat&);//??????
+	bool delete_chat(const User&);
+	bool change_password(string, string);
+	bool autorization(string);
 };
-Client::Client(std::string _name, std::string _login, std::string _password)
-{
-	password = _password;
-	User(_name, _login);
-}
-Client::~Client()
-{
-	std::cout << "Delete Client";
-}
-inline bool Client::add_friend(const User newUser)
-{
-	friends.push_back(newUser);
-	return true;
-}
-
 #endif // CLIENT_H

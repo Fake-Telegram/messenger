@@ -1,24 +1,30 @@
+//#pragma once
 #ifndef USER_H
 #define USER_H
 
+
+#include <iostream>
 #include <string>
-
-class User{
+using namespace std;
+class User
+{
+protected:
+	string name;
+	string login;
+	bool status;
+	unsigned userID;
 public:
-    User(const string);
-    User(const string, const string);
-    User(const User &other);
-    ~User();
-    unsigned get_id();
-    string get_name();
-    string get_login();
-    bool get_status();
-    void change_name(const string);
-private:
-    unsigned id;
-    string name;
-    string login;
-    bool status;
+	explicit User(string, string);//????
+	//User() = default;// { User("", ""); };// { cout << "wtf"; };
+	//User(const User &) = delete;
+	//User &operator=(User);
+	string get_name();
+	string get_login();
+	bool get_status();
+	unsigned get_userID();
+	void change_name(string);
+	void change_status();
+	virtual ~User();
+	friend bool operator==(const User& left, const User& right);
 };
-
 #endif // USER_H
