@@ -7,18 +7,20 @@
 using namespace std;
 
 class Message{
+private:
+	unsigned messageID;
+	string text;
+	bool sendORrecv;//true-send, false - recv
+	tm datetime;
 public:
-    Message(string);
-	Message() :text(""){};
-    Message(const Message &other) = default;
+    Message(const string&,const bool&);
+	//Message() :text(" "){};
+    Message(const Message &other);
 	string get_text();
+	bool get_sendORrecv();
 	tm get_datetime();
 	bool getMessage(ostream &);
     ~Message();
-private:
-    unsigned messageID;
-    string text;
-    tm datetime;
 };
 
 #endif // MESSAGE_H

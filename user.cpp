@@ -1,10 +1,16 @@
 #include "user.h"
 
-User::User(string _name, string _login) : name(_name),login(_login)
+User::User(const string &_name, const string &_login) : name(_name),login(_login)
 {
 	userID = 1;// CreateID(); ? ? ? ? ? ? ?
 }
-
+User::User(const User &user)
+{
+	name = user.name;
+	login = user.login;
+	userID = user.userID;
+	status = user.status;
+}
 User::~User()
 {
 	cout << "Delete User";

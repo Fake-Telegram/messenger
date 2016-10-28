@@ -14,7 +14,7 @@ private:
 public:
     Client(const string&, const string&, const string&);
 	~Client();
-    inline bool add_friend(const User&);//inline --experiment???
+    bool add_friend(const User&);
 	bool delete_friend(const User&);
 	bool add_chat(const User&);
 	bool open_chat(const Chat&);//??????
