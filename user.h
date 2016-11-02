@@ -14,10 +14,10 @@ protected:
 	bool status;
 	unsigned userID;
 public:
-    explicit User(string login, string name);//????
+    User(const string &login,const string &name);//????
 	//User() = default;// { User("", ""); };// { cout << "wtf"; };
-	//User(const User &) = delete;
-	//User &operator=(User);
+	User(const User &);
+	//User &operator=(User);//не динамическая память, нужно ли явно прописывать и удалять ранее выделенную память
 	string get_name();
 	string get_login();
 	bool get_status();

@@ -1,35 +1,42 @@
 #include "chat.h"
 
-Chat::Chat(User new_companion) :companion(new_companion), otr_status(false){}
+Chat::Chat(const User &new_companion) :companion(new_companion), otr_status(false){}
 
 Chat::~Chat()
 {
 	string filename = "";// companion.get_login();
 	ofstream out;
-	out.open(filename + ".txt", ios::app);
+	out.open(filename + "1.txt", ios::app);
 	for (list<Message>::iterator i = talk.begin(); i != talk.end(); i++)
 		(*i).getMessage(cout);
 	talk.clear();
 }
 
-bool Chat::send_message(string _mes)
+bool Chat::send_message(const string& _mes)
 {
-	try
-	{
-		Message mes(_mes);
-		talk.push_back(mes);//send to server
-	}
-	catch (exception ex)
-	{
-		cout << "Error send_message\n";
-		return false;
-	}
+	Message mes(_mes,false);
+	talk.push_back(mes);//send to server
+	
+	//cout << "Error send_message\n";
+	//return false;
+
+	return true;
+}
+
+bool Chat::recv_message(const string& _mes)
+{
+	Message mes(_mes, true);
+	talk.push_back(mes);
+	//send to server that message received
+	//cout << "Error send_message\n";
+	//return false;
+
 	return true;
 }
 
 void Chat::change_otr_status() { otr_status = !otr_status; }
 
-list <Message> Chat::find_message(string _message)
+list <Message> Chat::find_message(const string& _message)
 {
     list <Message> find_mes;
 	for (list<Message>::iterator i = talk.begin(); i != talk.end(); i++)
@@ -41,7 +48,7 @@ list <Message> Chat::find_message(string _message)
 	return find_mes;
 }
 
-bool operator==(const Chat& left, const Chat& right)
+bool Chat::operator==(const Chat& right)
 {
-	return left.companion == right.companion;
+	return companion == right.companion;
 }

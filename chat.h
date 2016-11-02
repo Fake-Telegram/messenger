@@ -7,8 +7,7 @@
 #include "message.h"
 #include "fstream"
 
-class Chat :
-	public Message
+class Chat
 {
 private:
 	User companion;
@@ -16,13 +15,13 @@ private:
 	list <Message> talk;
 	//Criptographer my_otr;
 public:
-	Chat(User);
+	Chat(const User&);
 	~Chat();
-	bool send_message(string);
-	//Message recv_message(string);
+	bool send_message(const string&);
+	bool recv_message(const string&);
 	void change_otr_status();
-	list <Message> find_message(string);
-	friend bool operator==(const Chat& left, const Chat& right);
+	list <Message> find_message(const string&);
+	bool operator==(const Chat& right);
 };
 
 #endif // CHAT_H
