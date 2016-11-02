@@ -19,6 +19,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
 	QString text = ui->lineEdit->text();
+    Message new_mess(text.toStdString());
 	ui->lineEdit->clear();
 	if(text.count(' ') == text.size()) return;
 	ui->listWidget_2->addItem(text);

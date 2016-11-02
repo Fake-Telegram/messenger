@@ -1,6 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "message.h"
+#include "chat.h"
+#include "user.h"
 #include <QMainWindow>
 
 //#include "mylistwidget.h"

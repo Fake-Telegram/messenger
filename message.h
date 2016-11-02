@@ -14,7 +14,7 @@ private:
 	tm datetime;
 public:
     Message(const string&,const bool&);
-	//Message() :text(" "){};
+    Message() :text(" "){}
     Message(const Message &other);
 	string get_text();
 	bool get_sendORrecv();
