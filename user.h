@@ -5,6 +5,17 @@
 
 #include <iostream>
 #include <string>
+#include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
+enum commands{
+	REGISTRATION,
+	AUTHORIZATION,
+	MESSAGE,
+	ADD_FRIEND,
+	FIND_FRIEND,
+
+};
 using namespace std;
 class User
 {
