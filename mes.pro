@@ -20,7 +20,10 @@ SOURCES += main.cpp\
     message.cpp \
 #    client_model.c
     chat.cpp \
-    authorization.cpp
+    authorization.cpp \
+    mes.cpp \
+    sMessage.cpp \
+    client_model.cpp
 
 HEADERS  += mainwindow.h \
     addfriend.h \
@@ -28,6 +31,8 @@ HEADERS  += mainwindow.h \
     message.h \
     client.h \
     chat.h \
-    authorization.h
+    authorization.h \
+    sMessage.h \
+    client_model.h
 
 FORMS    += mainwindow.ui
