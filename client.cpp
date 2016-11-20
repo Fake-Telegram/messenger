@@ -21,16 +21,17 @@ bool Client::delete_friend(const User &oldUser)
 		//return false;
 	return true;
 }
-Chat Client::find_chat(const unsigned int &chatID)
+bool Client::find_chat(const unsigned int &chatID, Chat *_Chat)
 {
 	for (list<Chat>::iterator i = room.begin(); i != room.end(); i++)
 	{
 		if (chatID == (*i).get_chatID())//change to _message in s
-			return (*i);// ???? проверить будет ли удаляться элемент из talk при удалении find_mes 
+			_Chat=&(*i);// ???? проверить будет ли удаляться элемент из talk при удалении find_mes 
+		return true;
 	}
 		//send_to_server WHAT THE FUCK
 
-	return ;
+	return false;
 }
 bool Client::add_chat(const User &newUser,unsigned int &chatID)
 {

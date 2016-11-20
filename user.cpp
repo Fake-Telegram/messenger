@@ -11,11 +11,15 @@ User::User(const User &user)
 }
 User::~User()
 {
-	cout << "Delete User aaa";
+	cout << "Delete User";
 }
 string User::get_name()
 {
 	return name;
+}
+void User::set_UserID(const unsigned int _UserID)
+{
+	userID=_UserID;
 }
 bool User::get_status()
 {

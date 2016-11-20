@@ -19,7 +19,7 @@ public:
 	~Client();
     bool add_friend(const User&);
 	bool delete_friend(const User&);
-	Chat find_chat(const unsigned int &chatID);
+	bool find_chat(const unsigned int &chatID, Chat *_Chat);
 	bool add_chat(const User&, unsigned int &chatID);
 	bool open_chat(const Chat&);//??????
 	bool close_chat(const Chat&);//??????
