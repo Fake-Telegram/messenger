@@ -18,3 +18,8 @@ void AddFriend::on_pushButton_clicked()
 {
 
 }
+
+void AddFriend::on_pushButton_3_clicked()
+{
+	close();
+}

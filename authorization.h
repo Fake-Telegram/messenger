@@ -1,14 +1,13 @@
 #ifndef AUTHORIZATION_H
 #define AUTHORIZATION_H
 
-#include <QWidget>
-#include <string>
+#include <QDialog>
 
 namespace Ui {
 class Authorization;
 }
 
-class Authorization : public QWidget
+class Authorization : public QDialog
 {
 	Q_OBJECT
 
@@ -19,8 +18,9 @@ public:
 private slots:
 	void on_pushButton_clicked();
 
+	void on_pushButton_2_clicked();
+
 private:
-	bool authorization(const string &login, const string & password);
 	Ui::Authorization *ui;
 };
 

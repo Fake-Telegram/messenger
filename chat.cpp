@@ -1,15 +1,18 @@
 #include "chat.h"
+
 Chat::Chat(const User &_companion,const unsigned int &_chatID) :companion(_companion), chatID(_chatID), otr_status(false)
 {
+
+	/*
 	string filename = "" + chatID;
 	ifstream in;
 	in.open(filename + ".txt");
-	system("pause");
+	//system("pause");
 	if (in.is_open())
 	{
 		while (!in.eof())
 		{
-			cout << "hi"; system("pause");
+			cout << "hi"; //system("pause");
 			unsigned messageID;
 			bool sendORrecv;
 			tm datetime;
@@ -28,11 +31,12 @@ Chat::Chat(const User &_companion,const unsigned int &_chatID) :companion(_compa
 			in >> text; //getline(in, text, "\n");???
 			in.ignore();
 			Message mes = Message(messageID,datetime,text,sendORrecv);
-			talk.push_back(mes);system("pause");
+			talk.push_back(mes);
+			//system("pause");
 		}
 	}
 	in.close();
-	
+*/
 }
 
 Chat::~Chat()
@@ -60,7 +64,7 @@ bool Chat::send_message(Message& _mes)
 
 		string filename = "" + chatID;
 		ofstream out;
-		out.open(filename + ".txt", ios::app);
+		out.open("1.txt", ios::app);
 		_mes.getMessage(out);
 		out.close();
 	}
@@ -102,11 +106,11 @@ bool Chat::send_message(Message& _mes)
 	writer.EndObject();
 	string json = buffer.GetString();
 	//*/
-	
+
 	cout << json << endl;
 	//send(json);
-	system("pause");
-	recv_message(json);
+	//system("pause");
+	//recv_message(json);
 	return true;
 }
 

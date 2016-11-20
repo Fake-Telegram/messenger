@@ -1,13 +1,18 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "addfriend.h"
+#include "authorization.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+	Authorization aut;
+	aut.exec();
 	ui->setupUi(this);
+	//Chat hellow(User(0, "Name"), ;
+	active_chat = new Chat(User(0, "Name"), 12);
     //ui->listWidget_2->setContextMenuPolicy(Qt::CustomContextMenu);
     //connect(listWidget_2, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(ShowContextMenu(const QPoint&)));
 }
@@ -26,7 +31,6 @@ void MainWindow::on_pushButton_clicked()
 	if(text.count(' ') == text.size()) return;
 	text = QString::fromStdString(new_mess.get_string_datetime() + "\n") + text;
 	ui->listWidget_2->addItem(text);
-
 }
 
 
