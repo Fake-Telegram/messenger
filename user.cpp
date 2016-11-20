@@ -11,7 +11,7 @@ User::User(const User &user)
 }
 User::~User()
 {
-	cout << "Delete User";
+	cout << "Delete User aaa";
 }
 string User::get_name()
 {
