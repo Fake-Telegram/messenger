@@ -20,7 +20,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
 	QString text = ui->lineEdit->text();
-	Message new_mess(text.toStdString(), true);
+	Message new_mess(text.toStdString(), false);
+	active_chat->send_message(new_mess);
 	ui->lineEdit->clear();
 	if(text.count(' ') == text.size()) return;
 	text = QString::fromStdString(new_mess.get_string_datetime() + "\n") + text;
@@ -40,8 +41,11 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     AddFriend *pAddFriend = new AddFriend;
-    if(pAddFriend->exec() == QDialog::Accepted){
+	pAddFriend->show();
 
-    }
+}
 
+void MainWindow::on_action_3_triggered()
+{
+	close();
 }

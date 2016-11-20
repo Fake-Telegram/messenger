@@ -1,22 +1,22 @@
 #ifndef AUTHORIZATION_H
 #define AUTHORIZATION_H
 
-#include <QDialog>
-#include <QString>
-#include <QtGui>
-#include <QLineEdit>
-#include <QLabel>
-#include <QGridLayout>
-#include <QPushButton>
 #include <QWidget>
 
-class authorization : public QDialog
+namespace Ui {
+class Authorization;
+}
+
+class Authorization : public QWidget
 {
+	Q_OBJECT
+
 public:
-    authorization(QWidget* pwgt = 0);
+	explicit Autorization(QWidget *parent = 0);
+	~Autorization();
+
 private:
-    QLineEdit *_login;
-    QLineEdit *_password;
+	Ui::Authorization *ui;
 };
 
 #endif // AUTHORIZATION_H

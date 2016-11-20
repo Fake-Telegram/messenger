@@ -16,22 +16,25 @@ class MainWindow;
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+	explicit MainWindow(QWidget *parent = 0);
+	~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+	void on_pushButton_clicked();
 
 	void on_listWidget_2_activated(const QModelIndex &index);
 
-    void on_pushButton_2_clicked();
+	void on_pushButton_2_clicked();
+
+	void on_action_3_triggered();
 
 private:
 	Client* client;
-    Ui::MainWindow *ui;
+	Chat* active_chat;
+	Ui::MainWindow *ui;
 };
 
 #endif // MAINWINDOW_H

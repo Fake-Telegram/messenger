@@ -1,6 +1,14 @@
 #include "authorization.h"
+#include "ui_authorization.h"
 
-authorization::authorization(QWidget* pwgt)
+Authorization::Authorization(QWidget *parent) :
+	QWidget(parent),
+	ui(new Ui::Authorization)
 {
+	ui->setupUi(this);
+}
 
+Authorization::~Authorization()
+{
+	delete ui;
 }
