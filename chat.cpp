@@ -1,15 +1,13 @@
 #include "chat.h"
 Chat::Chat(const User &_companion,const unsigned int &_chatID) :companion(_companion), chatID(_chatID), otr_status(false)
 {
-	string filename = "" + chatID;
+	string filename = to_string(_chatID);
 	ifstream in;
-	in.open(filename + ".txt");
-	system("pause");
+	in.open(filename + ".txt"); 
 	if (in.is_open())
 	{
 		while (!in.eof())
 		{
-			cout << "hi"; system("pause");
 			unsigned messageID;
 			bool sendORrecv;
 			tm datetime;
@@ -18,23 +16,29 @@ Chat::Chat(const User &_companion,const unsigned int &_chatID) :companion(_compa
 
 			in >> messageID;
 			in >> sendORrecv;
-			in >> datetime.tm_mday;
-			in >> tmp; datetime.tm_mon = tmp - 1;
-			in >> tmp; datetime.tm_year = tmp - 1900;
-			in >> datetime.tm_hour;
-			in >> datetime.tm_min;
+			in >> datetime.tm_mday; in.ignore();
+			in >> tmp; datetime.tm_mon = tmp - 1; in.ignore();
+			in >> tmp; datetime.tm_year = tmp - 1900; in.ignore();
+			in >> datetime.tm_hour; in.ignore();
+			in >> datetime.tm_min; in.ignore();
 			in >> datetime.tm_sec;
 
 			in >> text; //getline(in, text, "\n");???
 			in.ignore();
 			Message mes = Message(messageID,datetime,text,sendORrecv);
-			talk.push_back(mes);system("pause");
+			talk.push_back(mes);
 		}
 	}
 	in.close();
 	
-}
-
+}/*
+Chat::Chat(const Chat &_Chat)
+{
+	companion=_Chat.companion;
+	chatID=_Chat.chatID;
+	otr_status=_Chat.otr_status;
+	talk = _Chat.talk;
+}*/
 Chat::~Chat()
 {
 	/*
@@ -44,7 +48,7 @@ Chat::~Chat()
 	for (list<Message>::iterator i = talk.begin(); i != talk.end(); i++)
 		(*i).getMessage(out);
 		*/
-	talk.clear();
+	//talk.clear();
 }
 
 bool Chat::send_message(Message& _mes)
@@ -58,7 +62,7 @@ bool Chat::send_message(Message& _mes)
 	else
 	{
 
-		string filename = "" + chatID;
+		string filename = to_string(chatID);
 		ofstream out;
 		out.open(filename + ".txt", ios::app);
 		_mes.getMessage(out);
@@ -105,7 +109,6 @@ bool Chat::send_message(Message& _mes)
 	
 	cout << json << endl;
 	//send(json);
-	system("pause");
 	recv_message(json);
 	return true;
 }
@@ -125,7 +128,7 @@ bool Chat::recv_message(const string& _mes)
 		//uncriptographer;
 	}
 	{
-		string filename = "" + companion.get_userID();
+		string filename = to_string(chatID);
 		ofstream out;
 		out.open(filename + ".txt", ios::app);
 		mes.getMessage(out);

@@ -13,6 +13,14 @@ Message::Message(const tm &_datetime, const string &_text, const bool &status) :
 }
 Message::Message(const unsigned int &_messageID, const tm &_datetime, const string &_text, const bool &status) : messageID(_messageID), datetime(_datetime), text(_text), sendORrecv(status)
 {}
+Message::Message()
+{
+	text = "";
+	sendORrecv=false;
+	time_t t = time(NULL);
+	datetime = *localtime(&t);
+	messageID = 1;//CreateMessageID ???
+}
 Message::Message(const Message &mes)
 {
 	sendORrecv = mes.sendORrecv;
@@ -22,7 +30,7 @@ Message::Message(const Message &mes)
 }
 Message::~Message()
 {
-	cout << "Delete message";
+	//cout << "Delete message";
 }
 
 string Message::get_text()
