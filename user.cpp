@@ -1,13 +1,11 @@
 #include "user.h"
 
-User::User(const string &_name, const string &_login) : name(_name),login(_login)
+User::User(const unsigned int & _userID, const string &_name) : userID(_userID), name(_name)
 {
-	userID = 1;// CreateID(); ? ? ? ? ? ? ?
 }
 User::User(const User &user)
 {
 	name = user.name;
-	login = user.login;
 	userID = user.userID;
 	status = user.status;
 }
@@ -19,15 +17,11 @@ string User::get_name()
 {
 	return name;
 }
-string User::get_login()
-{
-	return login;
-}
 bool User::get_status()
 {
 	return status;
 }
-unsigned User::get_userID()
+unsigned int User::get_userID()
 {
 	return userID;
 }
@@ -41,5 +35,5 @@ void User::change_status()
 }
 bool User::operator==(const User& right)
 {
-    return login == right.login;
+    return userID == right.userID;
 }
