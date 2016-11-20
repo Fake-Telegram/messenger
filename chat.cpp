@@ -47,10 +47,9 @@ Chat::~Chat()
 	talk.clear();
 }
 
-bool Chat::send_message(const string& _mes)
+bool Chat::send_message(Message& _mes)
 {
-	Message mes(_mes,false);
-	talk.push_back(mes);//send to server
+	talk.push_back(_mes);//send to server
 
 	if (otr_status)
 	{
@@ -62,7 +61,7 @@ bool Chat::send_message(const string& _mes)
 		string filename = "" + chatID;
 		ofstream out;
 		out.open(filename + ".txt", ios::app);
-		mes.getMessage(out);
+		_mes.getMessage(out);
 		out.close();
 	}
 	/*1
@@ -96,9 +95,9 @@ bool Chat::send_message(const string& _mes)
 	writer.Key("otr");
 	writer.Bool(otr_status);
 	writer.Key("datetime");
-	writer.String(mes.get_string_datetime().c_str());
+	writer.String(_mes.get_string_datetime().c_str());
 	writer.Key("text");
-	writer.String(mes.get_text().c_str());
+	writer.String(_mes.get_text().c_str());
 
 	writer.EndObject();
 	string json = buffer.GetString();
@@ -153,11 +152,10 @@ list <Message> Chat::find_message(const string& _message)
 	}
 	return find_mes;
 }
-/*
 unsigned int Chat::get_chatID()
 {
 	return chatID;
-}*/
+}
 bool Chat::operator==(const Chat& right)
 {
 	return chatID == right.chatID;

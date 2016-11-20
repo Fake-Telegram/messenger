@@ -20,17 +20,27 @@ bool jsonParse(string json)
 		//registration(json); or registration(document["login"].GetString(),document["name"].GetString(),document["password"].GetString());????
 		break;
 	case AUTHORIZATION:
-		//authorization
+		//authorization(document["login"].GetString(),document["password"].GetString())
+
+
 		break;
 	case MESSAGE:
 		//if(!document["OTRstatus"].GetBool());
-		//{saveMessage(json); or saveMessage(loginFrom,document["loginTo"].GetString(),document["text"].GetString(),document["datetime"].GetString());}
-		//sendMessage(json, loginFrom) or sendMessage(loginFrom,document["loginTo"].GetString(),document["text"].GetString(),document["datetime"].GetString());
+		//{saveMessage(json); or saveMessage(loginFrom,document["chatID"].GetString(),document["text"].GetString(),document["datetime"].GetString());}
+		//sendMessage(json, loginFrom) or sendMessage(loginFrom,document["chat"].GetString(),document["text"].GetString(),document["datetime"].GetString());
 		break;
 	case ADD_FRIEND:
 
 		break;
 	case FIND_FRIEND:
+		break;
+
+	case CREAT_CHAT:
+		//create_chat()
+		//return chatID
+		break;
+
+	case EXIT:
 		break;
 	default:
 		cout << "Error\n";
@@ -38,6 +48,50 @@ bool jsonParse(string json)
 		break;
 	}
 	return true;
+}
+bool registration(const string &login, const string &name, const string & password)
+{
+	rapidjson::StringBuffer buffer;
+	rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+
+	writer.StartObject();
+
+	writer.Key("operation");
+	writer.Int(REGISTRATION);
+	writer.Key("login");
+	writer.String(login.c_str());
+	writer.Key("name");
+	writer.String(name.c_str());
+	writer.Key("password");
+	writer.String(password.c_str());
+
+	writer.EndObject();
+	string json = buffer.GetString();
+
+	//send(json);
+	//ответ???
+	return 0;
+}
+bool authorization(const string &login, const string &name, const string & password)
+{
+	rapidjson::StringBuffer buffer;
+	rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+
+	writer.StartObject();
+
+	writer.Key("operation");
+	writer.Int(AUTHORIZATION);
+	writer.Key("login");
+	writer.String(login.c_str());
+	writer.Key("password");
+	writer.String(password.c_str());
+
+	writer.EndObject();
+	string json = buffer.GetString();
+
+	//send(json);
+	//ответ???
+	return 0;
 }
 /*
 //message
@@ -104,19 +158,18 @@ cout << buffer.GetString() << endl;
 	cout << as;
 	*/
 	//User Pit = User("Pit","YoPit");
-	Client PC("Pit","PC","132");
+	Client PC(12,"Pit","PC","132");
 	Message m=Message("What's up",true);
 	ofstream in;
 	in.open("hk.txt",ios::app);
 	cout << m.get_datetime().tm_mday;
 	m.getMessage(in);
 	cout<<m.get_string_datetime();
-	User lol("pol","lop");
-	Chat room(lol);
-	room.send_message("pop");
-	cout << "lk"<<PC.get_name() << "ssa " << PC.get_login()<<PC.get_status();
+	User lol(12,"lop");
+	Chat room(lol,1);
+	room.send_message(Message("pop",false));
+	cout << "lk"<<PC.get_name() << "ssa " << PC.get_userID()<<"asd "<<PC.get_status();
 	//cout << Pit.get_name() << " " << Pit.get_login();
 	in.close();
 	return 0;
 }
-
