@@ -8,7 +8,7 @@ using namespace std;
 
 class sMessage{
 private:
-	unsigned messageID;
+	unsigned int messageID;
 	string text;
 	string from_user;
 	string to_user;

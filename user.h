@@ -14,25 +14,31 @@ enum commands{
 	MESSAGE,
 	ADD_FRIEND,
 	FIND_FRIEND,
-
+	CREAT_CHAT,
+	EXIT
+};
+enum results{
+	NEW_FRIEND,
+	REQUST,
+	NEW_CHAT,
+	SENT,
+	READ
 };
 using namespace std;
 class User
 {
 protected:
 	string name;
-	string login;
 	bool status;
-	unsigned userID;
+	unsigned int userID;
 public:
-    User(const string &login,const string &name);//????
+    User(const unsigned int & _userID,const string &_name);//????
 	//User() = default;// { User("", ""); };// { cout << "wtf"; };
 	User(const User &);
 	//User &operator=(User);//не динамическая память, нужно ли явно прописывать и удалять ранее выделенную память
 	string get_name();
-	string get_login();
 	bool get_status();
-	unsigned get_userID();
+	unsigned int get_userID();
 	void change_name(string);
 	void change_status();
 	virtual ~User();

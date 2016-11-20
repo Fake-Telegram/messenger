@@ -11,7 +11,7 @@ Message::Message(const tm &_datetime, const string &_text, const bool &status) :
 {
 	messageID = 1;//CreateMessageID ???
 }
-Message::Message(const unsigned &_messageID, const tm &_datetime, const string &_text, const bool &status) : messageID(_messageID), datetime(_datetime), text(_text), sendORrecv(status)
+Message::Message(const unsigned int &_messageID, const tm &_datetime, const string &_text, const bool &status) : messageID(_messageID), datetime(_datetime), text(_text), sendORrecv(status)
 {}
 Message::Message(const Message &mes)
 {

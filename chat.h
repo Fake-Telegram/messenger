@@ -11,15 +11,18 @@ class Chat
 {
 private:
 	User companion;
+	unsigned int chatID;
 	bool otr_status;
 	list <Message> talk;
 	//Criptographer my_otr;
 public:
-	Chat(const User&);
+	Chat(const User &_companion, const unsigned int &_chatID);
+	Chat(const Chat &);
 	~Chat();
 	bool send_message(const string&);
 	bool recv_message(const string&);
 	void change_otr_status();
+	//unsigned int get_chatID();
 	list <Message> find_message(const string&);
 	bool operator==(const Chat& right);
 };
