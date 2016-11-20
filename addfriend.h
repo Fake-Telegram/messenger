@@ -1,23 +1,25 @@
 #ifndef ADDFRIEND_H
 #define ADDFRIEND_H
 
-#include <QDialog>
-#include <QString>
-#include <QtGui>
-#include <QLineEdit>
-#include <QLabel>
-#include <QGridLayout>
-#include <QPushButton>
 #include <QWidget>
 
-class AddFriend : public QDialog{
-    Q_OBJECT
+namespace Ui {
+class AddFriend;
+}
+
+class AddFriend : public QWidget
+{
+	Q_OBJECT
+
 public:
-    AddFriend(QWidget* pwgt = 0);
-    QString getLogin();
+	explicit AddFriend(QWidget *parent = 0);
+	~AddFriend();
+
+private slots:
+	void on_pushButton_clicked();
+
 private:
-    QLineEdit *_login;
-    bool _stat = false;
+	Ui::AddFriend *ui;
 };
 
 #endif // ADDFRIEND_H
