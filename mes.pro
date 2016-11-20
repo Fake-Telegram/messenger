@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -21,8 +21,8 @@ SOURCES += main.cpp\
 #    client_model.c
     chat.cpp \
     authorization.cpp \
-    mes.cpp \
-    sMessage.cpp \
+#    mes.cpp \
+#    sMessage.cpp \
     client_model.cpp
 
 HEADERS  += mainwindow.h \
@@ -32,7 +32,7 @@ HEADERS  += mainwindow.h \
     client.h \
     chat.h \
     authorization.h \
-    sMessage.h \
+#    sMessage.h \
     client_model.h
 
 FORMS    += mainwindow.ui

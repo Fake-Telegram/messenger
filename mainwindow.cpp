@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "addfriend.h"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -19,19 +20,21 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
 	QString text = ui->lineEdit->text();
-    Message new_mess(text.toStdString());
+	Message new_mess(text.toStdString(), true);
 	ui->lineEdit->clear();
 	if(text.count(' ') == text.size()) return;
+	text = QString::fromStdString(new_mess.get_string_datetime() + "\n") + text;
 	ui->listWidget_2->addItem(text);
-}
-
-
-
-
-void MainWindow::on_listWidget_2_activated(const QModelIndex &index)
-{
 
 }
+
+
+
+
+//void MainWindow::on_listWidget_2_activated(const QModelIndex &index)
+//{
+
+//}
 
 
 void MainWindow::on_pushButton_2_clicked()

@@ -1,7 +1,8 @@
 // mes.cpp: определяет точку входа для консольного приложения.
 //
 
-#include "stdafx.h"
+#include "chat.h"
+#include "client.h"
 #include <fstream>
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"

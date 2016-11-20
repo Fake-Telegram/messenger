@@ -10,12 +10,12 @@
 #include <string.h>
 #define MAX_BUF 1024
 
-class Client {
+class Network {
     public:
         int socket_fd;
 
-        Client();
-        ~Client();
+		Network();
+		~Network();
         int send_message(char *buffer, int buf_len);
         int get_message(char *buffer, int buf_len);
 };

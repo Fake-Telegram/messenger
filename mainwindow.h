@@ -4,7 +4,9 @@
 #include "message.h"
 #include "chat.h"
 #include "user.h"
+#include "client.h"
 #include <QMainWindow>
+#include <ctime>
 
 //#include "mylistwidget.h"
 
@@ -28,6 +30,7 @@ private slots:
     void on_pushButton_2_clicked();
 
 private:
+	Client* client;
     Ui::MainWindow *ui;
 };
 

@@ -1,6 +1,6 @@
-#include "client.h"
+#include "client_model.h"
 
-Client:: Client() {
+Network:: Network() {
     FILE *parameters;
     int error_flag, port;
     char ip[50];
@@ -40,14 +40,14 @@ Client:: Client() {
     }
 }    
 
-Client:: ~Client()
+Network:: ~Network()
 {
     printf("Goodbye\n");
     shutdown(socket_fd, 2);
     close(socket_fd);
 }
 
-int Client:: send_message(char *buffer, int buf_len)
+int Network:: send_message(char *buffer, int buf_len)
 {
     int error_flag; 
 ///!!!!  handler is needed
@@ -62,7 +62,7 @@ int Client:: send_message(char *buffer, int buf_len)
     return error_flag;
 }
 
-int Client:: get_message(char *buffer, int buf_len)
+int Network:: get_message(char *buffer, int buf_len)
 {
     int error_flag;
     error_flag = read(socket_fd, buffer, buf_len);
