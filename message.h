@@ -17,6 +17,7 @@ public:
     Message(const string &_text,const bool &status);
 	Message(const tm &_datetime, const string &_text, const bool &status);
 	Message(const unsigned int &_messageID, const tm &_datetime, const string &_text, const bool &status);
+	Message();
 	//Message() :text(""){};
     Message(const Message &other);
 	string get_text();
