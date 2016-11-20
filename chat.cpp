@@ -1,7 +1,7 @@
 #include "chat.h"
-Chat::Chat(const User &new_companion) :companion(new_companion), otr_status(false)
+Chat::Chat(const User &_companion,const unsigned int &_chatID) :companion(_companion), chatID(_chatID), otr_status(false)
 {
-	string filename = companion.get_login();
+	string filename = "" + chatID;
 	ifstream in;
 	in.open(filename + ".txt");
 	system("pause");
@@ -9,6 +9,7 @@ Chat::Chat(const User &new_companion) :companion(new_companion), otr_status(fals
 	{
 		while (!in.eof())
 		{
+			cout << "hi"; system("pause");
 			unsigned messageID;
 			bool sendORrecv;
 			tm datetime;
@@ -25,13 +26,13 @@ Chat::Chat(const User &new_companion) :companion(new_companion), otr_status(fals
 			in >> datetime.tm_sec;
 
 			in >> text; //getline(in, text, "\n");???
-
+			in.ignore();
 			Message mes = Message(messageID,datetime,text,sendORrecv);
-			talk.push_back(mes);
+			talk.push_back(mes);system("pause");
 		}
 	}
 	in.close();
-	system("pause");
+	
 }
 
 Chat::~Chat()
@@ -58,7 +59,7 @@ bool Chat::send_message(const string& _mes)
 	else
 	{
 
-		string filename = companion.get_login();
+		string filename = "" + chatID;
 		ofstream out;
 		out.open(filename + ".txt", ios::app);
 		mes.getMessage(out);
@@ -88,8 +89,10 @@ bool Chat::send_message(const string& _mes)
 	
 	writer.Key("operation");
 	writer.Int(MESSAGE);
-	writer.Key("toUser");
-	writer.String(companion.get_login().c_str());
+	writer.Key("chatID");
+	writer.Uint(chatID);
+	//writer.Key("toUser");
+	//writer.Uint(companion.get_userID());
 	writer.Key("otr");
 	writer.Bool(otr_status);
 	writer.Key("datetime");
@@ -123,7 +126,7 @@ bool Chat::recv_message(const string& _mes)
 		//uncriptographer;
 	}
 	{
-		string filename = companion.get_login();
+		string filename = "" + companion.get_userID();
 		ofstream out;
 		out.open(filename + ".txt", ios::app);
 		mes.getMessage(out);
@@ -146,12 +149,16 @@ list <Message> Chat::find_message(const string& _message)
 	{
         string s = (*i).get_text();
         if (s.find(_message) != string::npos)//change to _message in s
-			find_mes.push_back(*i);// ???? проверить будет ли удаляться элемент из talk при удалении find_mes 
+			find_mes.push_back(*i);// ???? пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ talk пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ find_mes 
 	}
 	return find_mes;
 }
-
+/*
+unsigned int Chat::get_chatID()
+{
+	return chatID;
+}*/
 bool Chat::operator==(const Chat& right)
 {
-	return companion == right.companion;
+	return chatID == right.chatID;
 }
