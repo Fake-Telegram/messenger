@@ -54,6 +54,7 @@ Chat::~Chat()
 
 bool Chat::send_message(Message& _mes)
 {
+	Network net;
 	talk.push_back(_mes);//send to server
 
 	if (otr_status)
@@ -109,8 +110,9 @@ bool Chat::send_message(Message& _mes)
 	//*/
 
 	cout << json << endl;
+	net.send_message(json.c_str(), json.length() + 1);
 	//send(json);
-	recv_message(json);
+	//recv_message(json);
 	return true;
 }
 

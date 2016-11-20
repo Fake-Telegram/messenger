@@ -6,6 +6,7 @@
 #include "user.h"
 #include "message.h"
 #include "fstream"
+#include "client_model.h"
 
 class Chat
 {

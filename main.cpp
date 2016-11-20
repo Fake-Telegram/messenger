@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[]){
 
-	Network net();
+//	Network net();
 //	Client *client = nullptr;
 	QApplication a(argc, argv);
 	//Authorization aut;

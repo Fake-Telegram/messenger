@@ -1,4 +1,5 @@
-
+#ifndef NETWORK_H
+#define NETWORK_H
 #include <stdio.h>
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -16,6 +17,8 @@ class Network {
 
 		Network();
 		~Network();
-        int send_message(char *buffer, int buf_len);
+		int send_message(const char *buffer, int buf_len);
         int get_message(char *buffer, int buf_len);
 };
+
+#endif NETWORK_H

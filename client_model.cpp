@@ -47,7 +47,7 @@ Network:: ~Network()
     close(socket_fd);
 }
 
-int Network:: send_message(char *buffer, int buf_len)
+int Network:: send_message(const char *buffer, int buf_len)
 {
     int error_flag; 
 ///!!!!  handler is needed
@@ -58,7 +58,7 @@ int Network:: send_message(char *buffer, int buf_len)
     } else if (error_flag == 0) {
         return (-1);
     }*/
-    buffer[0] = 0;
+	//buffer[0] = 0;
     return error_flag;
 }
 
