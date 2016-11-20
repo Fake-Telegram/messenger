@@ -23,8 +23,8 @@ SOURCES += main.cpp\
 #    mes.cpp \
 #    sMessage.cpp \
     client_model.cpp \
-    mes.cpp \
-    client_model.c \
+#    mes.cpp \
+#    client_model.c \
     authorization.cpp
 
 HEADERS  += mainwindow.h \
@@ -35,7 +35,8 @@ HEADERS  += mainwindow.h \
     chat.h \
 #    sMessage.h \
     client_model.h \
-    authorization.h
+    authorization.h \
+    aut.h
 
 FORMS    += mainwindow.ui \
     addfriend.ui \
