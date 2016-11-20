@@ -67,7 +67,17 @@ bool Client::delete_friend(const User &oldUser)
 		//return false;
 	return true;
 }
+Chat Client::find_chat(const unsigned int &chatID)
+{
+	for (list<Chat>::iterator i = room.begin(); i != room.end(); i++)
+	{
+		if (chatID == (*i).get_chatID())//change to _message in s
+			return (*i);// ???? проверить будет ли удаляться элемент из talk при удалении find_mes 
+	}
+		//send_to_server WHAT THE FUCK
 
+	return ;
+}
 bool Client::add_chat(const User &newUser,unsigned int &chatID)
 {
 	room.push_back(Chat(newUser,chatID));

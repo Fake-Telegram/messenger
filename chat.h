@@ -18,10 +18,10 @@ public:
 	Chat(const User &_companion, const unsigned int &_chatID);
 	Chat(const Chat &);
 	~Chat();
-	bool send_message(const string&);
+	bool send_message(Message&);
 	bool recv_message(const string&);
 	void change_otr_status();
-	//unsigned int get_chatID();
+	unsigned int get_chatID();
 	list <Message> find_message(const string&);
 	bool operator==(const Chat& right);
 };
