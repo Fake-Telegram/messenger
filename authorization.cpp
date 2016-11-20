@@ -12,3 +12,8 @@ Authorization::~Authorization()
 {
 	delete ui;
 }
+
+void Authorization::on_pushButton_clicked()
+{
+
+}

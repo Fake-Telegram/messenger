@@ -193,7 +193,7 @@ bool registration(const string &login, const string &name, const string & passwo
 	//�����???
 	return 0;
 }
-bool authorization(const string &login, const string &name, const string & password)
+bool authorization(const string &login, const string & password)
 {
 	rapidjson::StringBuffer buffer;
 	rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);

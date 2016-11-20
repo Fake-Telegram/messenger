@@ -35,9 +35,11 @@ public:
     User(const unsigned int & _userID,const string &_name);//????
 	//User() = default;// { User("", ""); };// { cout << "wtf"; };
 	User(const User &);
+
 	//User &operator=(User);//не динамическая память, нужно ли явно прописывать и удалять ранее выделенную память
 	string get_name();
 	bool get_status();
+	void set_UserID(const unsigned int _UserID);
 	unsigned int get_userID();
 	void change_name(string);
 	void change_status();
