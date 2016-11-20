@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Autorization</class>
- <widget class="QWidget" name="Autorization">
+ <class>Authorization</class>
+ <widget class="QWidget" name="Authorization">
   <property name="geometry">
    <rect>
     <x>0</x>
