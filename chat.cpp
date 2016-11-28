@@ -1,8 +1,10 @@
 #include "chat.h"
 
+
+
 Chat::Chat(const User &_companion,const unsigned int &_chatID) :companion(_companion), chatID(_chatID), otr_status(false)
 {
-	string filename = to_string(_chatID);
+    string filename = std::to_string(_chatID);
 	ifstream in;
 	in.open(filename + ".txt"); 
 	if (in.is_open())
@@ -54,7 +56,7 @@ Chat::~Chat()
 
 bool Chat::send_message(Message& _mes)
 {
-	Network net;
+    //Network net;
 	talk.push_back(_mes);//send to server
 
 	if (otr_status)
@@ -110,7 +112,9 @@ bool Chat::send_message(Message& _mes)
 	//*/
 
 	cout << json << endl;
-	net.send_message(json.c_str(), json.length() + 1);
+//	net.send_message(json.c_str(), json.length() + 1);
+    string buf("5 Hello!\n");
+    net.send_message(buf);
 	//send(json);
 	//recv_message(json);
 	return true;

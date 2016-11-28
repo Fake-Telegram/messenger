@@ -32,7 +32,7 @@ protected:
 	bool status;
 	unsigned int userID;
 public:
-    User(const unsigned int & _userID,const string &_name);//????
+    User(const unsigned int & _userID, const string &_name);//????
 	//User() = default;// { User("", ""); };// { cout << "wtf"; };
 	User(const User &);
 	//User();

@@ -10,7 +10,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = mes
 TEMPLATE = app
-
+QMAKE_CXXFLAGS += -std=c++11 -g
+LIBS += -lboost_system -lboost_thread -lpthread
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -22,10 +23,11 @@ SOURCES += main.cpp\
     chat.cpp \
 #    mes.cpp \
 #    sMessage.cpp \
-    client_model.cpp \
 #    mes.cpp \
 #    client_model.c \
-    authorization.cpp
+    authorization.cpp \
+    networkl.cpp \
+    thread_pool.cpp
 
 HEADERS  += mainwindow.h \
     addfriend.h \
@@ -34,9 +36,10 @@ HEADERS  += mainwindow.h \
     client.h \
     chat.h \
 #    sMessage.h \
-    client_model.h \
     authorization.h \
-    aut.h
+    aut.h \
+    network.h \
+    thread_pool.h
 
 FORMS    += mainwindow.ui \
     addfriend.ui \

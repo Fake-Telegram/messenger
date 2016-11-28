@@ -7,12 +7,30 @@ Message::Message(const string &_text,const bool &status) :text(_text), sendORrec
 	messageID = 1;//CreateMessageID ???
 	//cout << asctime(&datetime) << " "<< text;
 }
-Message::Message(const tm &_datetime, const string &_text, const bool &status) : datetime(_datetime), text(_text), sendORrecv(status)
+Message::Message(
+    const tm &_datetime,
+    const string &_text,
+    const bool &status
+)
+    : text(_text)
+    , sendORrecv(status)
+    , datetime(_datetime)
 {
 	messageID = 1;//CreateMessageID ???
 }
-Message::Message(const unsigned int &_messageID, const tm &_datetime, const string &_text, const bool &status) : messageID(_messageID), datetime(_datetime), text(_text), sendORrecv(status)
-{}
+Message::Message(
+    const unsigned int &_messageID,
+    const tm &_datetime,
+    const string &_text,
+    const bool &status
+)
+    : messageID(_messageID)
+    , text(_text)
+    , sendORrecv(status)
+    , datetime(_datetime)
+{
+
+}
 Message::Message()
 {
 	text = "";

@@ -36,10 +36,10 @@ void MainWindow::on_pushButton_clicked()
 
 
 
-//void MainWindow::on_listWidget_2_activated(const QModelIndex &index)
-//{
+void MainWindow::on_listWidget_2_activated(const QModelIndex &index)
+{
 
-//}
+}
 
 
 void MainWindow::on_pushButton_2_clicked()
@@ -52,9 +52,4 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_action_3_triggered()
 {
 	close();
-}
-
-void MainWindow::on_listWidget_2_activated(const QModelIndex &index)
-{
-
 }

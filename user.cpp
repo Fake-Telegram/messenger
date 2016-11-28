@@ -1,6 +1,8 @@
 #include "user.h"
 
-User::User(const unsigned int & _userID, const string &_name) : userID(_userID), name(_name)
+User::User(const unsigned int & _userID, const string &_name)
+    : name(_name)
+    , userID(_userID)
 {
 }
 User::User(const User &user)
