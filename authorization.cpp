@@ -22,3 +22,28 @@ void Authorization::on_pushButton_2_clicked()
 {
 	close();
 }
+
+void Authorization::on_Login_clicked()
+{
+	close();
+}
+
+void Authorization::on_login_clicked()
+{
+	rapidjson::StringBuffer buffer;
+	rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+
+	writer.StartObject();
+
+	writer.Key("operation");
+	writer.Int(AUTHORIZATION);
+	writer.Key("Login");
+	writer.String(ui->Login->text().toStdString().c_str());
+	writer.Key("Password");
+	writer.String(ui->Password->text().toStdString().c_str());
+	writer.EndObject();
+	string json = buffer.GetString();
+	cout << json << endl;
+	net.send_message(string(json));
+	close();
+}

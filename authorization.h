@@ -2,6 +2,15 @@
 #define AUTHORIZATION_H
 
 #include <QDialog>
+#include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
+#include "user.h"
+#include "network.h"
+#include <string>
+#include <QString>
+
+extern Network net;
 
 namespace Ui {
 class Authorization;
@@ -19,6 +28,10 @@ private slots:
 	void on_pushButton_clicked();
 
 	void on_pushButton_2_clicked();
+
+	void on_Login_clicked();
+
+	void on_login_clicked();
 
 private:
 	Ui::Authorization *ui;

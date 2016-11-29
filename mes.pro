@@ -13,6 +13,8 @@ TEMPLATE = app
 QMAKE_CXXFLAGS += -std=c++11 -g
 LIBS += -lboost_system -lboost_thread -lpthread
 
+CONFIG += console
+
 SOURCES += main.cpp\
         mainwindow.cpp \
     addfriend.cpp \

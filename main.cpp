@@ -24,10 +24,9 @@ int main(int argc, char *argv[]){
     Thread_pool thread_pool(io_service);
     thread_pool.start();
 	QApplication a(argc, argv);
-	//Authorization aut;
-	//aut.exec();
-
-    MainWindow w;
+	Authorization aut;
+	aut.exec();
+	MainWindow w;
     io_service->dispatch(boost::bind(&MainWindow::show, &w));
 	return a.exec();
 }
