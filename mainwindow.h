@@ -6,6 +6,7 @@
 #include "user.h"
 #include "client.h"
 #include <QMainWindow>
+#include <QTextEdit>
 #include <ctime>
 
 //#include "mylistwidget.h"
@@ -19,6 +20,7 @@ class MainWindow : public QMainWindow
 	Q_OBJECT
 
 public:
+//	explicit MainWindow(QWidget *parent = 0, const Client *client);
 	explicit MainWindow(QWidget *parent = 0);
 	~MainWindow();
 
@@ -32,7 +34,7 @@ private slots:
 	void on_action_3_triggered();
 
 private:
-	Client* client;
+	const Client* _client;
 	Chat* active_chat;
 	Ui::MainWindow *ui;
 };

@@ -23,6 +23,7 @@ public:
 	Chat(const User &_companion, const unsigned int &_chatID);
 	//Chat(const Chat &);
 	~Chat();
+	string get_companion_name();
 	bool send_message(Message&);
 	bool recv_message(const string&);
 	void change_otr_status();

@@ -8,13 +8,15 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-	Authorization aut;
-	aut.exec();
 	ui->setupUi(this);
-	//Chat hellow(User(0, "Name"), ;
+//	_client = client;
 	active_chat = new Chat(User(0, "Name"), 12);
-    //ui->listWidget_2->setContextMenuPolicy(Qt::CustomContextMenu);
-    //connect(listWidget_2, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(ShowContextMenu(const QPoint&)));
+//	Chat comp;
+//	foreach (comp, _client->room) {
+//		ui->listWidget->addItem(comp.get_companion_name());
+//	}
+
+
 }
 
 MainWindow::~MainWindow()
@@ -24,10 +26,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-	QString text = ui->lineEdit->text();
+	QString text = ui->textEdit->toPlainText();
 	Message new_mess(text.toStdString(), false);
 	active_chat->send_message(new_mess);
-	ui->lineEdit->clear();
+	ui->textEdit->clear();
 	if(text.count(' ') == text.size()) return;
 	text = QString::fromStdString(new_mess.get_string_datetime() + "\n") + text;
 	ui->listWidget_2->addItem(text);

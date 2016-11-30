@@ -113,7 +113,7 @@ bool Chat::send_message(Message& _mes)
 
 	cout << json << endl;
 //	net.send_message(json.c_str(), json.length() + 1);
-    string buf("5 Hello!\n");
+	string buf(json);
     net.send_message(buf);
 	//send(json);
 	//recv_message(json);
@@ -169,4 +169,8 @@ unsigned int Chat::get_chatID()
 bool Chat::operator==(const Chat& right)
 {
 	return chatID == right.chatID;
+}
+
+string Chat::get_companion_name(){
+	return companion.get_name();
 }

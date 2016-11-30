@@ -6,7 +6,7 @@ Network:: Network(boost::shared_ptr<boost::asio::io_service> io_service)
     : socket(new boost::asio::ip::tcp::socket(*io_service))
     , resolver(*io_service)
     , query(
-          "127.0.0.1",
+		  "185.146.171.72",
           boost::lexical_cast<std::string>(7000)
       )
 {
