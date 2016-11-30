@@ -32,9 +32,8 @@ public:
 
     Network(boost::shared_ptr<boost::asio::io_service> io_service);
     ~Network();
-    //	int send_message(const char *buffer, int buf_len);
-    //    int get_message(char *buffer, int buf_len);
-    void OnConnect(
+
+    void connect_handle(
         const boost::system::error_code &ec);
     void send_message(std::string buffer);
     void send_handler(

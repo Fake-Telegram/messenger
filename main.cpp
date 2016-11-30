@@ -28,6 +28,7 @@ int main(int argc, char *argv[]){
 	//aut.exec();
 
     MainWindow w;
-    io_service->dispatch(boost::bind(&MainWindow::show, &w));
+//    io_service->dispatch(boost::bind(&MainWindow::show, &w));
+    w.show();
 	return a.exec();
 }
