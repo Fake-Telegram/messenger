@@ -6,9 +6,10 @@ Network:: Network(boost::shared_ptr<boost::asio::io_service> io_service)
     : socket(new boost::asio::ip::tcp::socket(*io_service))
     , resolver(*io_service)
     , query(
-		  "185.146.171.72",
+          //"185.146.171.72",
+          "127.0.0.1",
           boost::lexical_cast<std::string>(7000)
-      )
+    )
 {
     try {
       iterator = resolver.resolve(query);
@@ -54,7 +55,8 @@ Network::connect_handle(
 
 void Network::send_handler(
     const boost::system::error_code &ec,
-    std::string &buffer)
+    std::string &buffer,
+    std::size_t num_sent)
 {
     if (ec) {
         global_stream_lock.lock();
@@ -65,63 +67,81 @@ void Network::send_handler(
     } else {
         global_stream_lock.lock();
         std::cout << "[" <<boost::this_thread::get_id() <<
-        "] Sent " << buffer.length() << "bytes." <<std::endl;
+        "] Sent " << num_sent << "bytes." <<std::endl;
         global_stream_lock.unlock();
+        buffer.erase(num_sent);
+        if (buffer.empty()) {
+            socket->async_write_some(
+                boost::asio::buffer(buffer),
+                boost::bind(
+                    &Network::send_handler,
+                    this,
+                    boost::asio::placeholders::error,
+                    buffer,
+                    boost::asio::placeholders::bytes_transferred()
+                )
+            );
+        }
     }
-    //buffer.erase(iterator);
-/*    if (!m_send_buffer.empty()) {
-        boost::asio::async_write(
-            m_socket,
-            boost::asio::buffer(m_send_buffer.front()),
-            boost::bind(
-                &Network::send_handler,
-                this,
-                boost::asio::placeholders::error,
-                m_send_buffer.begin()
-            )
-        );
-    }*/
 }
 
-void Network:: send_message(std::string buffer)
+void Network:: send_message(std::string &buffer)
 {
-/*    int error_flag;
-///!!!!  handler is needed
-    error_flag = write(socket_fd, buffer, buf_len);*/
-/*    if (error_flag == (-1)) {
-        perror("write");
-        exit(errno);
-    } else if (error_flag == 0) {
-        return (-1);
-    }*/
-	//buffer[0] = 0;
-//    return error_flag;
-    boost::asio::async_write(
-        *socket,
-        boost::asio::buffer(buffer, buffer.length()),
+    socket->async_write_some(
+        boost::asio::buffer(buffer),
         boost::bind(
             &Network::send_handler,
             this,
             boost::asio::placeholders::error,
-            buffer
+            buffer,
+            boost::asio::placeholders::bytes_transferred()
         )
-        //[this](){return;}
     );
 }
 
-/*int Network:: get_message(char *buffer, int buf_len)
+void Network::get_message()
 {
-    int error_flag;
-    error_flag = read(socket_fd, buffer, buf_len);
-    if (error_flag == -1) {
-        perror("read");
-        exit(errno);
+    socket->async_read_some(
+        boost::asio::buffer(recv_buffer, BUF_SIZE),
+        boost::bind(
+            &Network::get_handler,
+            this,
+            boost::asio::placeholders::error,
+            boost::asio::placeholders::bytes_transferred()
+        )
+    );
+
+}
+
+void Network::get_handler(
+    const boost::system::error_code &ec,
+    std::size_t num_got
+)
+{
+    if (ec) {
+        global_stream_lock.lock();
+        std::cout << "[" << boost::this_thread::get_id() <<
+        "] Error: " << ec << std::endl;
+        global_stream_lock.unlock();
+        //Close();
+    } else {
+        global_stream_lock.lock();
+        std::cout << "[" <<boost::this_thread::get_id() <<
+        "] Receive " << num_got << "bytes.\n" <<
+        std::string(recv_buffer, num_got) << std::endl;
+        global_stream_lock.unlock();
+        receive_string = receive_string + std::string(recv_buffer, num_got);
+        //recv_buffer.erase();
+        /*socket->async_read_some(
+            boost::asio::buffer(recv_buffer),
+            boost::bind(
+                &Network::send_handler,
+                this,
+                boost::asio::placeholders::error,
+                boost::asio::placeholders::bytes_transferred()
+            )
+        );*/
+        get_message();
     }
-    buffer[error_flag] = 0;
-    error_flag = fputs(buffer, stdout);
-    if (error_flag == EOF) {
-        return -1;
-    }
-    buffer[0] = 0;
-    return 1;
-}*/
+}
+

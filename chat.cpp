@@ -113,7 +113,8 @@ bool Chat::send_message(Message& _mes)
 
 	cout << json << endl;
 //	net.send_message(json.c_str(), json.length() + 1);
-	string buf(json);
+    string buf("5" + json + "\0");
+    //we need shared_ptr here
     net.send_message(buf);
 	//send(json);
 	//recv_message(json);
