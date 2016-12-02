@@ -23,6 +23,7 @@ int main(int argc, char *argv[]){
     );
     Thread_pool thread_pool(io_service);
     thread_pool.start();
+    net.get_message();
 	QApplication a(argc, argv);
 	Authorization aut;
     aut.exec();

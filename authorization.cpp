@@ -42,8 +42,8 @@ void Authorization::on_login_clicked()
 	writer.Key("Password");
 	writer.String(ui->Password->text().toStdString().c_str());
 	writer.EndObject();
-	string json = buffer.GetString();
+    string json = string("5") + buffer.GetString() + string("\0");
 	cout << json << endl;
-	net.send_message(string(json));
+    net.send_message(json);
 	close();
 }
