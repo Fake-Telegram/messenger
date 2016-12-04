@@ -2,9 +2,13 @@
 #define SETTINGS_H
 
 #include <string>
+#include <ctime>
+#include <sstream>
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
+
+using namespace std;
 enum commands{
 	REGISTRATION,
 	AUTHORIZATION,
