@@ -1,6 +1,6 @@
 #include "network.h"
 
-
+tm get_date_time(const string &datetime0);
 
 Network:: Network(boost::shared_ptr<boost::asio::io_service> io_service)
 	: socket(new boost::asio::ip::tcp::socket(*io_service))
@@ -162,8 +162,25 @@ void Network::get_signal(string &json){
 				emit result_authorization(doc["result"].GetBool());
 			}
 			break;
-		default:
+		case MESSAGE:
+			emit recv_mess(doc["chatID"].GetUint(), Message(doc["messID"].GetUint(),
+					get_date_time(doc["datetime"].GetString()), doc["text"].GetString(), doc["otr"].GetBool() ));
 			break;
 		}
 	}
 }
+
+tm get_date_time(const string &datetime0){
+	stringstream in;
+	tm datetime;
+	int tmp;
+	in << datetime0;
+	in >> datetime.tm_mday; in.ignore();
+	in >> tmp; datetime.tm_mon = tmp - 1; in.ignore();
+	in >> tmp; datetime.tm_year = tmp - 1900; in.ignore();
+	in >> datetime.tm_hour; in.ignore();
+	in >> datetime.tm_min; in.ignore();
+	in >> datetime.tm_sec;
+	return datetime;
+}
+
