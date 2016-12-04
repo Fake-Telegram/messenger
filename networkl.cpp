@@ -130,7 +130,9 @@ void Network::get_handler(
 					 "] Receive " << num_got << "bytes.\n" <<
 					 std::string(recv_buffer, num_got) << std::endl;
 		global_stream_lock.unlock();
-		receive_string = receive_string + std::string(recv_buffer, num_got);
+		std::cerr << "@" << std::string(recv_buffer, num_got) << "@" << std::endl;
+
+		//receive_string = receive_string + std::string(recv_buffer, num_got);
 		//recv_buffer.erase();
 		/*socket->async_read_some(
 			boost::asio::buffer(recv_buffer),
@@ -145,3 +147,18 @@ void Network::get_handler(
 	}
 }
 
+
+void Network::get_signal(string &json){
+	unsigned ID_operation;
+	rapidjson::Document doc;
+	doc.SetObject();
+	if(!doc.Parse(json.c_str()).HasParseError()){
+		ID_operation = doc["operation"].GetInt();
+		switch (ID_operation) {
+		case AUTHORIZATION:
+			break;
+		default:
+			break;
+		}
+	}
+}

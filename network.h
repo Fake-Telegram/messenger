@@ -20,6 +20,7 @@
 #include <boost/lexical_cast.hpp>
 #include <QObject>
 #include <message.h>
+#include "settings.h"
 #define BUF_SIZE 2048
 
 extern boost::mutex global_stream_lock;
@@ -53,6 +54,8 @@ public:
     void get_handler(
         const boost::system::error_code &ec,
         std::size_t num_got);
+private:
+	void get_signal(string &json);
 };
 
 #endif //NETWORK_H

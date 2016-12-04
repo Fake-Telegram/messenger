@@ -34,7 +34,8 @@ HEADERS  += mainwindow.h \
     chat.h \
     authorization.h \
     network.h \
-    thread_pool.h
+    thread_pool.h \
+    settings.h
 
 FORMS    += mainwindow.ui \
     addfriend.ui \
