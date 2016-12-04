@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>635</width>
-    <height>449</height>
+    <width>652</width>
+    <height>440</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -108,12 +108,18 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit">
+         <widget class="QTextEdit" name="textEdit">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -135,7 +141,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>635</width>
+     <width>652</width>
      <height>19</height>
     </rect>
    </property>
@@ -145,6 +151,7 @@
     </property>
     <addaction name="action"/>
     <addaction name="action_2"/>
+    <addaction name="action_3"/>
    </widget>
    <addaction name="menuMessenger"/>
   </widget>
@@ -165,6 +172,11 @@
   <action name="action_2">
    <property name="text">
     <string>Выход</string>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="text">
+    <string>Закрыть</string>
    </property>
   </action>
  </widget>

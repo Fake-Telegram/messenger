@@ -1,14 +1,22 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "addfriend.h"
+#include "authorization.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
-    //ui->listWidget_2->setContextMenuPolicy(Qt::CustomContextMenu);
-    //connect(listWidget_2, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(ShowContextMenu(const QPoint&)));
+//	_client = client;
+	active_chat = new Chat(User(0, "Name"), 12);
+//	Chat comp;
+//	foreach (comp, _client->room) {
+//		ui->listWidget->addItem(comp.get_companion_name());
+//	}
+
+
 }
 
 MainWindow::~MainWindow()
@@ -18,9 +26,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-	QString text = ui->lineEdit->text();
-	ui->lineEdit->clear();
+	QString text = ui->textEdit->toPlainText();
+	Message new_mess(text.toStdString(), false);
+	active_chat->send_message(new_mess);
+	ui->textEdit->clear();
 	if(text.count(' ') == text.size()) return;
+	text = QString::fromStdString(new_mess.get_string_datetime() + "\n") + text;
 	ui->listWidget_2->addItem(text);
 }
 
@@ -36,8 +47,11 @@ void MainWindow::on_listWidget_2_activated(const QModelIndex &index)
 void MainWindow::on_pushButton_2_clicked()
 {
     AddFriend *pAddFriend = new AddFriend;
-    if(pAddFriend->exec() == QDialog::Accepted){
+	pAddFriend->show();
 
-    }
+}
 
+void MainWindow::on_action_3_triggered()
+{
+	close();
 }

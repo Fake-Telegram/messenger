@@ -1,7 +1,10 @@
 #include "chat.h"
+
+
+
 Chat::Chat(const User &_companion,const unsigned int &_chatID) :companion(_companion), chatID(_chatID), otr_status(false)
 {
-	string filename = to_string(_chatID);
+    string filename = std::to_string(_chatID);
 	ifstream in;
 	in.open(filename + ".txt"); 
 	if (in.is_open())
@@ -53,6 +56,7 @@ Chat::~Chat()
 
 bool Chat::send_message(Message& _mes)
 {
+    //Network net;
 	talk.push_back(_mes);//send to server
 
 	if (otr_status)
@@ -64,7 +68,7 @@ bool Chat::send_message(Message& _mes)
 
 		string filename = to_string(chatID);
 		ofstream out;
-		out.open(filename + ".txt", ios::app);
+		out.open("1.txt", ios::app);
 		_mes.getMessage(out);
 		out.close();
 	}
@@ -106,22 +110,26 @@ bool Chat::send_message(Message& _mes)
 	writer.EndObject();
 	string json = buffer.GetString();
 	//*/
-	
+
 	cout << json << endl;
+//	net.send_message(json.c_str(), json.length() + 1);
+    string buf("5" + json + "\0");
+    //we need shared_ptr here
+    net.send_message(buf);
 	//send(json);
-	recv_message(json);
+	//recv_message(json);
 	return true;
 }
 
-bool Chat::recv_message(const string& _mes)
+bool Chat::recv_message(const Message &_mes)
 {
-	rapidjson::Document doc;
+	//rapidjson::Document doc;
 	//doc.SetObject();
 
-	doc.Parse(_mes.c_str());
+//	doc.Parse(_mes.c_str());
 
-	Message mes(doc["text"].GetString(), true);
-	cout << doc["datetime"].GetString();
+	Message mes(_mes);
+//	cout << doc["datetime"].GetString();
 	talk.push_back(mes);
 	if (otr_status)//doc["otr"].GetBool();
 	{
@@ -151,7 +159,7 @@ list <Message> Chat::find_message(const string& _message)
 	{
         string s = (*i).get_text();
         if (s.find(_message) != string::npos)//change to _message in s
-			find_mes.push_back(*i);// ???? проверить будет ли удаляться элемент из talk при удалении find_mes 
+			find_mes.push_back(*i);// ???? пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ talk пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ find_mes 
 	}
 	return find_mes;
 }
@@ -162,4 +170,8 @@ unsigned int Chat::get_chatID()
 bool Chat::operator==(const Chat& right)
 {
 	return chatID == right.chatID;
+}
+
+string Chat::get_companion_name(){
+	return companion.get_name();
 }

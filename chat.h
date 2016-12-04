@@ -6,6 +6,10 @@
 #include "user.h"
 #include "message.h"
 #include "fstream"
+#include "network.h"
+
+
+extern Network net;
 
 class Chat
 {
@@ -19,8 +23,9 @@ public:
 	Chat(const User &_companion, const unsigned int &_chatID);
 	//Chat(const Chat &);
 	~Chat();
+	string get_companion_name();
 	bool send_message(Message&);
-	bool recv_message(const string&);
+	bool recv_message(const Message&);
 	void change_otr_status();
 	unsigned int get_chatID();
 	list <Message> find_message(const string&);

@@ -2,21 +2,35 @@
 #define AUTHORIZATION_H
 
 #include <QDialog>
+#include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
+#include "user.h"
+#include "network.h"
+#include <string>
 #include <QString>
-#include <QtGui>
-#include <QLineEdit>
-#include <QLabel>
-#include <QGridLayout>
-#include <QPushButton>
-#include <QWidget>
 
-class authorization : public QDialog
+extern Network net;
+
+namespace Ui {
+class Authorization;
+}
+
+class Authorization : public QDialog
 {
+	Q_OBJECT
+
 public:
-    authorization(QWidget* pwgt = 0);
+	explicit Authorization(QWidget *parent = 0);
+	~Authorization();
+
+private slots:
+	void on_Exit_clicked();
+
+	void on_login_clicked();
+
 private:
-    QLineEdit *_login;
-    QLineEdit *_password;
+	Ui::Authorization *ui;
 };
 
 #endif // AUTHORIZATION_H

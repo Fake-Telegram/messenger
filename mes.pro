@@ -4,13 +4,16 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui opengl
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 5): QT += widgets
 
 TARGET = mes
 TEMPLATE = app
+QMAKE_CXXFLAGS += -std=c++11 -g
+LIBS += -lboost_system -lboost_thread -lpthread
 
+CONFIG += console
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -18,9 +21,10 @@ SOURCES += main.cpp\
     user.cpp \
     client.cpp \
     message.cpp \
-#    client_model.c
     chat.cpp \
-    authorization.cpp
+    authorization.cpp \
+    networkl.cpp \
+    thread_pool.cpp
 
 HEADERS  += mainwindow.h \
     addfriend.h \
@@ -28,6 +32,10 @@ HEADERS  += mainwindow.h \
     message.h \
     client.h \
     chat.h \
-    authorization.h
+    authorization.h \
+    network.h \
+    thread_pool.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    addfriend.ui \
+    authorization.ui

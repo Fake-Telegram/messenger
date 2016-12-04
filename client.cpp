@@ -56,3 +56,12 @@ bool Client::change_password(const string& curr_pas,const string& new_pas)
 	return true;
 }
 bool Client::autorization(const string&){ cout << "df"; return true; }//?????????????????????????
+
+bool Client::add_message(const unsigned ID_chat, const Message &mes){
+	Chat *temp;
+	if(find_chat(ID_chat, temp)){
+		temp->recv_message(mes);
+		return true;
+	}
+	return false;
+}
