@@ -20,6 +20,7 @@
 #include <boost/lexical_cast.hpp>
 #include <QObject>
 #include <message.h>
+#include "settings.h"
 #define BUF_SIZE 2048
 
 extern boost::mutex global_stream_lock;
@@ -29,6 +30,7 @@ class Network : public QObject{
 
 signals:
 	void recv_mess(const unsigned ID_chat, const Message& mess);
+	void result_authorization(const bool result, const unsigned ID_User = 0);
 public:
     boost::shared_ptr <boost::asio::ip::tcp::socket> socket;
     boost::asio::ip::tcp::resolver resolver;
@@ -53,6 +55,8 @@ public:
     void get_handler(
         const boost::system::error_code &ec,
         std::size_t num_got);
+private:
+	void get_signal(string &json);
 };
 
 #endif //NETWORK_H
