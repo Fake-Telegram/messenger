@@ -156,6 +156,11 @@ void Network::get_signal(string &json){
 		ID_operation = doc["operation"].GetInt();
 		switch (ID_operation) {
 		case AUTHORIZATION:
+			if(doc["result"].GetBool()){
+				emit result_authorization(doc["result"].GetBool(), doc["ID"].GetUint());
+			}else{
+				emit result_authorization(doc["result"].GetBool());
+			}
 			break;
 		default:
 			break;
