@@ -25,11 +25,7 @@ public:
 	~Authorization();
 
 private slots:
-	void on_pushButton_clicked();
-
-	void on_pushButton_2_clicked();
-
-	void on_Login_clicked();
+	void on_Exit_clicked();
 
 	void on_login_clicked();
 

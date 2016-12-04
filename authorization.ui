@@ -70,7 +70,7 @@
    <item row="3" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="Exit">
        <property name="text">
         <string>Закрыть</string>
        </property>

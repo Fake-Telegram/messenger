@@ -13,19 +13,9 @@ Authorization::~Authorization()
 	delete ui;
 }
 
-void Authorization::on_pushButton_clicked()
+void Authorization::on_Exit_clicked()
 {
 	exit(5);
-}
-
-void Authorization::on_pushButton_2_clicked()
-{
-	close();
-}
-
-void Authorization::on_Login_clicked()
-{
-	close();
 }
 
 void Authorization::on_login_clicked()

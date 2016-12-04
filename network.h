@@ -18,11 +18,17 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/lexical_cast.hpp>
+#include <QObject>
+#include <message.h>
 #define BUF_SIZE 2048
 
 extern boost::mutex global_stream_lock;
 
-class Network {
+class Network : public QObject{
+	Q_OBJECT
+
+signals:
+	void recv_mess(const unsigned ID_chat, const Message& mess);
 public:
     boost::shared_ptr <boost::asio::ip::tcp::socket> socket;
     boost::asio::ip::tcp::resolver resolver;
@@ -34,7 +40,7 @@ public:
     //int socket_fd;
 
     Network(boost::shared_ptr<boost::asio::io_service> io_service);
-    ~Network();
+	~Network();
 
     void connect_handle(
         const boost::system::error_code &ec);

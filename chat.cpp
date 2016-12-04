@@ -121,15 +121,15 @@ bool Chat::send_message(Message& _mes)
 	return true;
 }
 
-bool Chat::recv_message(const string& _mes)
+bool Chat::recv_message(const Message &_mes)
 {
-	rapidjson::Document doc;
+	//rapidjson::Document doc;
 	//doc.SetObject();
 
-	doc.Parse(_mes.c_str());
+//	doc.Parse(_mes.c_str());
 
-	Message mes(doc["text"].GetString(), true);
-	cout << doc["datetime"].GetString();
+	Message mes(_mes);
+//	cout << doc["datetime"].GetString();
 	talk.push_back(mes);
 	if (otr_status)//doc["otr"].GetBool();
 	{

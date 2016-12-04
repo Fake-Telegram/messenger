@@ -26,5 +26,6 @@ public:
 	bool delete_chat(const User&, unsigned int &chatID);
     bool change_password(const string&, const string&);
     bool autorization(const string&);
+	bool add_message(const unsigned ID_chat, const Message& mes);
 };
 #endif // CLIENT_H

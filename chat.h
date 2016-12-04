@@ -25,7 +25,7 @@ public:
 	~Chat();
 	string get_companion_name();
 	bool send_message(Message&);
-	bool recv_message(const string&);
+	bool recv_message(const Message&);
 	void change_otr_status();
 	unsigned int get_chatID();
 	list <Message> find_message(const string&);
