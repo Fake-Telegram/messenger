@@ -1,8 +1,12 @@
 #include "client.h"
 
-Client::Client(const unsigned &_userID, const string &_name,const string& _login, const string& _password) : User(_userID, _name), login(_login), password(_password)
-{ 
-	cout << "newUser"; 
+Client::Client(const string& login, const string& password) : m_login(login), m_password(password)
+{
+	cout << "newClient0";
+}
+Client::Client(const unsigned &userId, const string &name, const string& login, const string& password) : User(userId, name), m_login(login), m_password(password)
+{
+	cout << "newUser";
 }
 Client::~Client()
 {
@@ -11,55 +15,55 @@ Client::~Client()
 bool Client::add_friend(const User &newUser)
 {
 	friends.push_back(newUser);
-		//return false;
+	//return false;
 
 	return true;
 }
 bool Client::delete_friend(const User &oldUser)
 {
 	friends.remove(oldUser);
-		//return false;
+	//return false;
 	return true;
 }
-bool Client::find_chat(const unsigned int &chatID, Chat *_Chat)
+bool Client::find_chat(const unsigned int &chatId, Chat *chat)
 {
 	for (list<Chat>::iterator i = room.begin(); i != room.end(); i++)
 	{
-		if (chatID == (*i).get_chatID())//change to _message in s
-			_Chat=&(*i);// ???? проверить будет ли удаляться элемент из talk при удалении find_mes 
+		if (chatId == (*i).get_chatId())//change to _message in s
+			chat = &(*i);// ????
 		return true;
 	}
-		//send_to_server WHAT THE FUCK
+	//send_to_server WHAT THE FUCK
 
 	return false;
 }
-bool Client::add_chat(const User &newUser,unsigned int &chatID)
+bool Client::add_chat(const User &newUser, const unsigned int &chatId)
 {
-	room.push_back(Chat(newUser,chatID));
+	room.push_back(Chat(newUser, chatId));
 	//	cout << "Error add_chat";
 	//	return false;
 	return true;
 }
 bool Client::open_chat(const Chat&){ return true; }//??????
 bool Client::close_chat(const Chat&){ return true; }//??????
-bool Client::delete_chat(const User &oldUser, unsigned int &chatID)
+bool Client::delete_chat(const User &oldUser, const unsigned int &chatId)
 {
-	room.remove(Chat(oldUser,chatID));
+	room.remove(Chat(oldUser, chatId));
 	//	cout << "Error delete_chat";
 	//	return false;
 	return true;
 }
-bool Client::change_password(const string& curr_pas,const string& new_pas)
+bool Client::change_password(const string& curr_pas, const string& new_pas)
 {
-	if (password != curr_pas) return false;
-	password = new_pas;	//send to server???
+	if (m_password != curr_pas) return false;
+	m_password = new_pas;	//send to server???
 	return true;
 }
-bool Client::autorization(const string&){ cout << "df"; return true; }//?????????????????????????
+bool Client::authorization(const string&){ cout << "df"; return true; }//?????????????????????????
 
-bool Client::add_message(const unsigned ID_chat, const Message &mes){
+bool Client::add_message(const unsigned chatId, const Message &mes){
 	Chat *temp;
-	if(find_chat(ID_chat, temp)){
+	if (find_chat(chatId, temp)){
 		temp->recv_message(mes);
 		return true;
 	}

@@ -6,28 +6,29 @@
 #include "user.h"
 #include "message.h"
 #include "fstream"
-#include "network.h"
+//#include "network.h"
 
 
-extern Network net;
+//extern Network net;
 
 class Chat
 {
 private:
-	User companion;
-	unsigned int chatID;
-	bool otr_status;
-	list <Message> talk;
+	User m_companion;
+	unsigned int m_chatId;
+	bool m_otr_status;
+	list <Message> m_talk;
 	//Criptographer my_otr;
 public:
-	Chat(const User &_companion, const unsigned int &_chatID);
-	//Chat(const Chat &);
+	Chat(const User &companion, const unsigned int &chatId);
+	//Chat(const Chat &chat);
 	~Chat();
+	bool open();
 	string get_companion_name();
 	bool send_message(Message&);
 	bool recv_message(const Message&);
 	void change_otr_status();
-	unsigned int get_chatID();
+	unsigned int get_chatId();
 	list <Message> find_message(const string&);
 	bool operator==(const Chat& right);
 };
