@@ -11,22 +11,21 @@ using namespace std;
 class User
 {
 protected:
-	string name;
-	bool status;
-	unsigned int userID;
+	string m_name;
+	unsigned int m_userId;
+	bool m_status;
 public:
-    User(const unsigned int & _userID, const string &_name);//????
-	//User() = default;// { User("", ""); };// { cout << "wtf"; };
-	User(const User &);
-	//User();
-	//User &operator=(User);//не динамическая память, нужно ли явно прописывать и удалять ранее выделенную память
+	User(const unsigned int & userId, const string &name);//????
+	User(const User &user);
+	User();
+	//User &operator=(User);
 	string get_name();
 	bool get_status();
-	void set_UserID(const unsigned int _UserID);
-	unsigned int get_userID();
-	void change_name(string);
+	void set_userId(const unsigned int userId);
+	unsigned int get_userId();
+	void change_name(const string &newName);
 	void change_status();
 	virtual ~User();
-    bool operator==(const User& right);
+	bool operator==(const User& right);
 };
 #endif // USER_H

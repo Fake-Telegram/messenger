@@ -1,82 +1,120 @@
 #include "message.h"
+//helper.cpp----------------------
+tm convertStringToTm(const string &datetime0){
+	istringstream in(datetime0);
+	tm datetime;
+	int tmp;
+	in >> datetime.tm_mday; in.ignore();
+	in >> tmp; datetime.tm_mon = tmp - 1; in.ignore();
+	in >> tmp; datetime.tm_year = tmp - 1900; in.ignore();
+	in >> datetime.tm_hour; in.ignore();
+	in >> datetime.tm_min; in.ignore();
+	in >> datetime.tm_sec;
+	return datetime;
+}
+string convertTmToString(const tm &datetime){
+	ostringstream oss;
+	oss << datetime.tm_mday << "/" << datetime.tm_mon + 1 << "/" << datetime.tm_year + 1900 << " "
+		<< datetime.tm_hour << ":" << datetime.tm_min << ":" << datetime.tm_sec;
+	return oss.str();
+}
+//---------------------
 
-Message::Message(const string &_text,const bool &status) :text(_text), sendORrecv(status)
+Message::Message(const string &text, const bool &sendORrecv) : m_text(text), m_sendORrecv(sendORrecv)
 {
 	time_t t = time(NULL);
-	datetime = *localtime(&t);
-	messageID = 1;//CreateMessageID ???
+	m_datetime = *localtime(&t);
+	m_Id = 1;
+	m_localId = 1;//CreateMessageId ???
 	//cout << asctime(&datetime) << " "<< text;
 }
 Message::Message(
-    const tm &_datetime,
-    const string &_text,
-    const bool &status
-)
-    : text(_text)
-    , sendORrecv(status)
-    , datetime(_datetime)
+	const tm &datetime,
+	const string &text,
+	const bool &sendORrecv
+	)
+	: m_text(text)
+	, m_sendORrecv(sendORrecv)
+	, m_datetime(datetime)
 {
-	messageID = 1;//CreateMessageID ???
+	m_Id = 1;
+	m_localId = 1;//CreateMessageId ???
 }
 Message::Message(
-    const unsigned int &_messageID,
-    const tm &_datetime,
-    const string &_text,
-    const bool &status
-)
-    : messageID(_messageID)
-    , text(_text)
-    , sendORrecv(status)
-    , datetime(_datetime)
-{
-
-}
+	const unsigned int &localId,
+	const unsigned int &Id,
+	const tm &datetime,
+	const string &text,
+	const bool &sendORrecv
+	)
+	: m_localId(localId)
+	, m_Id(Id)
+	, m_text(text)
+	, m_sendORrecv(sendORrecv)
+	, m_datetime(datetime)
+{}
+Message::Message(
+	const unsigned int &localId,
+	const unsigned int &Id,
+	const string &datetime,
+	const string &text,
+	const bool &sendORrecv
+	)
+	: m_localId(localId)
+	, m_Id(Id)
+	, m_text(text)
+	, m_sendORrecv(sendORrecv)
+	, m_datetime(convertStringToTm(datetime))
+{}
 Message::Message()
 {
-	text = "";
-	sendORrecv=false;
+	m_text = "";
+	m_sendORrecv = false;
 	time_t t = time(NULL);
-	datetime = *localtime(&t);
-	messageID = 1;//CreateMessageID ???
+	m_datetime = *localtime(&t);
+	m_Id = 1;
+	m_localId = 1;//CreateMessageID ???
 }
 Message::Message(const Message &mes)
 {
-	sendORrecv = mes.sendORrecv;
-	text = mes.text;
-	datetime = mes.datetime;
-	messageID = mes.messageID;
+	m_sendORrecv = mes.m_sendORrecv;
+	m_text = mes.m_text;
+	m_datetime = mes.m_datetime;
+	m_Id = mes.m_Id;
+	m_localId = mes.m_localId;
 }
 Message::~Message()
 {
 	//cout << "Delete message";
 }
 
+unsigned int Message::get_localId()
+{
+	return m_localId;
+}
 string Message::get_text()
 {
-	return text;
+	return m_text;
 }
 
 bool Message::get_sendORrecv()
 {
-	return sendORrecv;
+	return m_sendORrecv;
 }
 tm Message::get_datetime()
 {
-	return datetime;
+	return m_datetime;
 }
 string Message::get_string_datetime()
 {
-	stringstream ss;
-	ss <<datetime.tm_mday << "/" << datetime.tm_mon + 1 << "/" << datetime.tm_year + 1900 << " "
-		<< datetime.tm_hour << ":" << datetime.tm_min << ":" << datetime.tm_sec;
-	return  ss.str();
+	return convertTmToString(m_datetime);
 }
 bool Message::getMessage(ostream &s)
 {
-	s << messageID << " " << sendORrecv << " " << get_string_datetime() << " " << text << endl;
+	s << m_localId << " " << m_Id << " " << m_sendORrecv << " " << convertTmToString(m_datetime) << " " << m_text << endl;
 	//s << messageID << " " << sendORrecv << " " << datetime.tm_mday << "/" << datetime.tm_mon + 1 << "/" << datetime.tm_year + 1900 << " "
 	//	<< datetime.tm_hour << ":" << datetime.tm_min << ":" << datetime.tm_sec << " " << text << endl;
-		//return false;
+	//return false;
 
 	return true;
 }

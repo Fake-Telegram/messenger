@@ -1,15 +1,14 @@
 #include "user.h"
 
-User::User(const unsigned int & _userID, const string &_name)
-    : name(_name)
-    , userID(_userID)
-{
-}
+User::User() : m_userId(0), m_name("user"), m_status(false)
+{}
+User::User(const unsigned int & userId, const string &name) : m_name(name), m_userId(userId), m_status(false)
+{}
 User::User(const User &user)
 {
-	name = user.name;
-	userID = user.userID;
-	status = user.status;
+	m_name = user.m_name;
+	m_userId = user.m_userId;
+	m_status = user.m_status;
 }
 User::~User()
 {
@@ -17,29 +16,29 @@ User::~User()
 }
 string User::get_name()
 {
-	return name;
+	return m_name;
 }
-void User::set_UserID(const unsigned int _UserID)
+void User::set_userId(const unsigned int userId)
 {
-	userID=_UserID;
+	m_userId = userId;
 }
 bool User::get_status()
 {
-	return status;
+	return m_status;
 }
-unsigned int User::get_userID()
+unsigned int User::get_userId()
 {
-	return userID;
+	return m_userId;
 }
-void User::change_name(string newname)
+void User::change_name(const string &newName)
 {
-	name = newname;
+	m_name = newName;
 }
 void User::change_status()
 {
-	status = !status;
+	m_status = !m_status;
 }
 bool User::operator==(const User& right)
 {
-    return userID == right.userID;
+	return m_userId == right.m_userId;
 }
