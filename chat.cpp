@@ -101,7 +101,7 @@ bool Chat::send_message(Message& mes)
 	//	net.send_message(json.c_str(), json.length() + 1);
 	string buf(json);
 	//we need shared_ptr here
-	//net.send_message(buf);
+	net.send_message(buf);
 	//send(json);
 	return true;
 }
