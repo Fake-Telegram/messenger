@@ -27,12 +27,12 @@ void Authorization::on_login_clicked()
 
 	writer.Key("operation");
 	writer.Int(AUTHORIZATION);
-	writer.Key("Login");
+    writer.Key("login");
 	writer.String(ui->Login->text().toStdString().c_str());
-	writer.Key("Password");
+    writer.Key("password");
 	writer.String(ui->Password->text().toStdString().c_str());
 	writer.EndObject();
-    string json = string("5") + buffer.GetString() + string("\0");
+    string json = buffer.GetString() + string("\0");
 	cout << json << endl;
     net.send_message(json);
 	close();
