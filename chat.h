@@ -6,10 +6,10 @@
 #include "user.h"
 #include "message.h"
 #include "fstream"
-//#include "network.h"
+#include "network.h"
 
 
-//extern Network net;
+extern Network net;
 
 class Chat
 {
