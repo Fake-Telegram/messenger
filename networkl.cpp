@@ -159,13 +159,13 @@ void Network::get_signal(const string &json){
 		case AUTHORIZATION:
 			//cout << "AUTHORIZATION\n";
 			if(doc["result"].GetBool()){
-				emit result_authorization(doc["result"].GetBool(), doc["ID"].GetUint());
+				emit result_authorization(doc["result"].GetBool(), doc["id"].GetUint());
 			}else{
 				emit result_authorization(doc["result"].GetBool(), 0);
 			}
 			break;
 		case MESSAGE:
-			emit recv_mess(doc["chatID"].GetUint(), Message(0, doc["messID"].GetUint(),
+			emit recv_mess(doc["chatId"].GetUint(), Message(0, doc["messID"].GetUint(),
 					get_date_time(doc["datetime"].GetString()), doc["text"].GetString(), doc["otr"].GetBool() ));
 			break;
 		}

@@ -39,14 +39,16 @@ void Registration::on_pushButton_clicked()
 
 		writer.StartObject();
 
-		writer.Key("nickname");
+		writer.Key("operation");
 		writer.Int(REGISTRATION);
-		writer.Key("email");
+		writer.Key("login");
 		writer.String(ui->email->text().toStdString().c_str());
 		writer.Key("password");
 		writer.String(ui->password->text().toStdString().c_str());
+		writer.Key("name");
+		writer.String(ui->nickname->text().toStdString().c_str());
 		writer.EndObject();
-		string json = buffer.GetString() + string("\0");
+		string json = buffer.GetString();
 		cout << json << endl;
 		net.send_message(json);
 	}
