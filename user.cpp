@@ -26,7 +26,7 @@ bool User::get_status()
 {
 	return m_status;
 }
-unsigned int User::get_userId()
+unsigned int User::get_id()
 {
 	return m_userId;
 }

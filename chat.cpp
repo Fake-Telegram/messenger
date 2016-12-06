@@ -41,9 +41,9 @@ bool Chat::open()
 			in >> localId;
 			in >> Id;
 			in >> sendORrecv;
-			in >> datetime.tm_mday; in.ignore();
-			in >> tmp; datetime.tm_mon = tmp - 1; in.ignore();
 			in >> tmp; datetime.tm_year = tmp - 1900; in.ignore();
+			in >> tmp; datetime.tm_mon = tmp - 1; in.ignore();
+			in >> datetime.tm_mday; in.ignore();
 			in >> datetime.tm_hour; in.ignore();
 			in >> datetime.tm_min; in.ignore();
 			in >> datetime.tm_sec;
