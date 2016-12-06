@@ -5,6 +5,7 @@ Authorization::Authorization(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::Authorization)
 {
+//	connect(net, SIGNAL(result_authorization(const bool, const unsigned)), this, SLOT(login_result(bool,uint)));
 	ui->setupUi(this);
 }
 
@@ -35,5 +36,22 @@ void Authorization::on_login_clicked()
     string json = buffer.GetString() + string("\0");
 	cout << json << endl;
     net.send_message(json);
-	close();
+	//close();
+}
+
+void Authorization::login_result(const bool result, const unsigned ID_User){
+	cout << "login result: " << result << "\nID: " << ID_User << endl;
+	if(result){
+		close();
+	}else{
+		ui->infomation->setStyleSheet("QLabel {color: red}");
+		ui->infomation->setText("Неверный логин или пароль.");
+		ui->Password->clear();
+	}
+}
+
+void Authorization::on_registration_clicked()
+{
+	Registration reg;
+	reg.exec();
 }

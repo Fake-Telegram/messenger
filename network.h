@@ -29,8 +29,8 @@ class Network : public QObject{
 	Q_OBJECT
 
 signals:
-	void recv_mess(const unsigned ID_chat, const Message& mess);
-	void result_authorization(const bool result, const unsigned ID_User = 0);
+	void recv_mess(const unsigned, const Message&);
+	void result_authorization(const bool, const unsigned);
 public:
     boost::shared_ptr <boost::asio::ip::tcp::socket> socket;
     boost::asio::ip::tcp::resolver resolver;
@@ -56,7 +56,11 @@ public:
         const boost::system::error_code &ec,
         std::size_t num_got);
 private:
-	void get_signal(string &json);
+	void get_signal(const string &json);
+private slots:
+	void sign(const bool b, const unsigned ID){
+		cout << "b = " << b << "\n ID = " << ID << endl;
+	}
 };
 
 #endif //NETWORK_H

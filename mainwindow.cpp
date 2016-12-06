@@ -38,10 +38,10 @@ void MainWindow::on_pushButton_clicked()
 
 
 
-void MainWindow::on_listWidget_2_activated(const QModelIndex &index)
-{
+//void MainWindow::on_listWidget_2_activated(const QModelIndex &index)
+//{
 
-}
+//}
 
 
 void MainWindow::on_pushButton_2_clicked()

@@ -3,6 +3,7 @@
 #include "client.h"
 #include "user.h"
 #include "network.h"
+#include <QObject>
 #include <QApplication>
 #include <thread_pool.h>
 
@@ -26,6 +27,7 @@ int main(int argc, char *argv[]){
 	net.get_message();
 	QApplication a(argc, argv);
 	Authorization aut;
+	QObject::connect(&net, SIGNAL(result_authorization(bool,uint)), &aut, SLOT(login_result(bool,uint)));
 	aut.exec();
 
 	MainWindow w;

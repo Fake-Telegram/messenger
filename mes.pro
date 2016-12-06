@@ -14,6 +14,7 @@ QMAKE_CXXFLAGS += -std=c++11 -g
 LIBS += -lboost_system -lboost_thread -lpthread
 
 CONFIG += console
+CONFIG += c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -24,7 +25,8 @@ SOURCES += main.cpp\
     chat.cpp \
     authorization.cpp \
     networkl.cpp \
-    thread_pool.cpp
+    thread_pool.cpp \
+    registration.cpp
 
 HEADERS  += mainwindow.h \
     addfriend.h \
@@ -35,8 +37,10 @@ HEADERS  += mainwindow.h \
     authorization.h \
     network.h \
     thread_pool.h \
-    settings.h
+    settings.h \
+    registration.h
 
 FORMS    += mainwindow.ui \
     addfriend.ui \
-    authorization.ui
+    authorization.ui \
+    registration.ui

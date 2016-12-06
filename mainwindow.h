@@ -27,7 +27,7 @@ public:
 private slots:
 	void on_pushButton_clicked();
 
-	void on_listWidget_2_activated(const QModelIndex &index);
+//	void on_listWidget_2_activated(const QModelIndex &index);
 
 	void on_pushButton_2_clicked();
 

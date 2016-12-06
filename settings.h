@@ -4,6 +4,9 @@
 #include <string>
 #include <ctime>
 #include <sstream>
+#include <iostream>
+#include <cstdlib>
+#include <cstdio>
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
@@ -16,10 +19,8 @@ enum commands{
 	ADD_FRIEND,
 	FIND_FRIEND,
 	CREAT_CHAT,
-	EXIT
-};
-
-enum results{
+	EXIT,
+	// Servsr's answer.
 	NEW_FRIEND,
 	REQUST,
 	NEW_CHAT,

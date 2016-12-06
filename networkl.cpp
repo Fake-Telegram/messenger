@@ -20,6 +20,7 @@ Network:: Network(boost::shared_ptr<boost::asio::io_service> io_service)
 		socket->async_connect(endpoint, boost::bind(
 								  &Network::connect_handle, this,  _1)
 							  );
+		//QObject::connect(this, &Network::result_authorization, this, &Network::sign);
 	} catch(std:: exception &ex) {
 		global_stream_lock.lock();
 		std::cerr  << "[" << boost::this_thread::get_id() <<
@@ -131,7 +132,7 @@ void Network::get_handler(
 					 std::string(recv_buffer, num_got) << std::endl;
 		global_stream_lock.unlock();
 		std::cerr << "@" << std::string(recv_buffer, num_got) << "@" << std::endl;
-
+		get_signal(std::string(recv_buffer, num_got));
 		//receive_string = receive_string + std::string(recv_buffer, num_got);
 		//recv_buffer.erase();
 		/*socket->async_read_some(
@@ -148,7 +149,7 @@ void Network::get_handler(
 }
 
 
-void Network::get_signal(string &json){
+void Network::get_signal(const string &json){
 	unsigned ID_operation;
 	rapidjson::Document doc;
 	doc.SetObject();
@@ -156,14 +157,15 @@ void Network::get_signal(string &json){
 		ID_operation = doc["operation"].GetInt();
 		switch (ID_operation) {
 		case AUTHORIZATION:
+			//cout << "AUTHORIZATION\n";
 			if(doc["result"].GetBool()){
 				emit result_authorization(doc["result"].GetBool(), doc["ID"].GetUint());
 			}else{
-				emit result_authorization(doc["result"].GetBool());
+				emit result_authorization(doc["result"].GetBool(), 0);
 			}
 			break;
 		case MESSAGE:
-			emit recv_mess(doc["chatID"].GetUint(), Message(doc["messID"].GetUint(),
+			emit recv_mess(doc["chatID"].GetUint(), Message(0, doc["messID"].GetUint(),
 					get_date_time(doc["datetime"].GetString()), doc["text"].GetString(), doc["otr"].GetBool() ));
 			break;
 		}
