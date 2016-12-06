@@ -5,7 +5,7 @@ Authorization::Authorization(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::Authorization)
 {
-//	connect(net, SIGNAL(result_authorization(const bool, const unsigned)), this, SLOT(login_result(bool,uint)));
+	connect(&net, &Network::result_authorization, this, &Authorization::login_result);
 	ui->setupUi(this);
 }
 

@@ -27,7 +27,7 @@ int main(int argc, char *argv[]){
 	net.get_message();
 	QApplication a(argc, argv);
 	Authorization aut;
-	QObject::connect(&net, &Network::result_authorization, &aut, &Authorization::login_result);
+	//QObject::connect(&net, &Network::result_authorization, &aut, &Authorization::login_result);
 	aut.exec();
 
 	MainWindow w;

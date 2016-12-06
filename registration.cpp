@@ -5,6 +5,7 @@ Registration::Registration(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::Registration)
 {
+	QObject::connect(&net, &Network::result_registration, this, &Registration::registration_status);
 	ui->setupUi(this);
 }
 
@@ -14,9 +15,11 @@ Registration::~Registration()
 }
 
 void Registration::registration_status(const bool result){
-	if(!result){
+	if(result){
+		close();
+	}else{
 		ui->error->setStyleSheet("QLabel {color: red}");
-		ui->error->setText("Неверный логин или пароль.");
+		ui->error->setText("Данный логин уже используется.");
 	}
 }
 
@@ -24,7 +27,7 @@ void Registration::registration_status(const bool result){
 
 void Registration::on_double_password_textChanged(const QString &arg1)
 {
-	if(ui->password->text() != ui->double_password->text()){
+	if(ui->password->text() != arg1){
 		ui->error->setText("Не совпадат пароли.");
 	}else{
 		ui->error->clear();

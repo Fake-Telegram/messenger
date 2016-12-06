@@ -168,6 +168,8 @@ void Network::get_signal(const string &json){
 			emit recv_mess(doc["chatId"].GetUint(), Message(0, doc["messID"].GetUint(),
 					get_date_time(doc["datetime"].GetString()), doc["text"].GetString(), doc["otr"].GetBool() ));
 			break;
+		case REGISTRATION:
+			emit result_registration(doc["result"].GetBool());
 		}
 	}
 }
@@ -185,4 +187,5 @@ tm get_date_time(const string &datetime0){
 	in >> datetime.tm_sec;
 	return datetime;
 }
+
 

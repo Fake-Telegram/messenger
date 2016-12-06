@@ -31,6 +31,7 @@ class Network : public QObject{
 signals:
 	void recv_mess(const unsigned, const Message&);
 	void result_authorization(const bool, const unsigned);
+	void result_registration(const bool);
 public:
     boost::shared_ptr <boost::asio::ip::tcp::socket> socket;
     boost::asio::ip::tcp::resolver resolver;
