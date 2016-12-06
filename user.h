@@ -22,7 +22,7 @@ public:
 	string get_name();
 	bool get_status();
 	void set_userId(const unsigned int userId);
-	unsigned int get_userId();
+	unsigned int get_id();
 	void change_name(const string &newName);
 	void change_status();
 	virtual ~User();

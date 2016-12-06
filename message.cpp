@@ -4,9 +4,9 @@ tm convertStringToTm(const string &datetime0){
 	istringstream in(datetime0);
 	tm datetime;
 	int tmp;
-	in >> datetime.tm_mday; in.ignore();
-	in >> tmp; datetime.tm_mon = tmp - 1; in.ignore();
 	in >> tmp; datetime.tm_year = tmp - 1900; in.ignore();
+	in >> tmp; datetime.tm_mon = tmp - 1; in.ignore();
+	in >> datetime.tm_mday; in.ignore();
 	in >> datetime.tm_hour; in.ignore();
 	in >> datetime.tm_min; in.ignore();
 	in >> datetime.tm_sec;
@@ -14,7 +14,7 @@ tm convertStringToTm(const string &datetime0){
 }
 string convertTmToString(const tm &datetime){
 	ostringstream oss;
-	oss << datetime.tm_mday << "/" << datetime.tm_mon + 1 << "/" << datetime.tm_year + 1900 << " "
+	oss << datetime.tm_year + 1900 << "/" << datetime.tm_mon + 1 << "/" << datetime.tm_mday << " "
 		<< datetime.tm_hour << ":" << datetime.tm_min << ":" << datetime.tm_sec;
 	return oss.str();
 }
@@ -24,8 +24,8 @@ Message::Message(const string &text, const bool &sendORrecv) : m_text(text), m_s
 {
 	time_t t = time(NULL);
 	m_datetime = *localtime(&t);
-	m_Id = 1;
-	m_localId = 1;//CreateMessageId ???
+	m_Id = 0;
+	m_localId = 0;//CreateMessageId ???
 	//cout << asctime(&datetime) << " "<< text;
 }
 Message::Message(
@@ -37,8 +37,8 @@ Message::Message(
 	, m_sendORrecv(sendORrecv)
 	, m_datetime(datetime)
 {
-	m_Id = 1;
-	m_localId = 1;//CreateMessageId ???
+	m_Id = 0;
+	m_localId = 0;//CreateMessageId ???
 }
 Message::Message(
 	const unsigned int &localId,
