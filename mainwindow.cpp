@@ -28,11 +28,13 @@ void MainWindow::on_pushButton_clicked()
 {
 	QString text = ui->textEdit->toPlainText();
 	Message new_mess(text.toStdString(), false);
-	active_chat->send_message(new_mess);
 	ui->textEdit->clear();
-	if(text.count(' ') == text.size()) return;
-	text = QString::fromStdString(new_mess.get_string_datetime() + "\n") + text;
-	ui->listWidget_2->addItem(text);
+	if((text.count(' ') == text.size()) || (text.size() == 0)) return ;
+	else{
+		active_chat->send_message(new_mess);
+		text = QString::fromStdString(new_mess.get_string_datetime() + "\n") + text + "\n";
+		ui->messeg->addItem(text);
+	}
 }
 
 
