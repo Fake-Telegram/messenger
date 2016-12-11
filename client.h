@@ -28,5 +28,6 @@ public:
 	bool change_password(const string&, const string&);
 	bool authorization(const string&);
 	bool add_message(const unsigned int chatId, const Message& mes);
+	unsigned chats_count();
 };
 #endif // CLIENT_H

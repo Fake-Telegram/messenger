@@ -2,15 +2,20 @@
 #include "ui_mainwindow.h"
 #include "addfriend.h"
 #include "authorization.h"
+#include "registration.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
+	QMainWindow(parent), auth(), reg(),
     ui(new Ui::MainWindow)
 {
+	//QObject::connect(ui->quit_user, &QAction::triggered, &aut, &Authorization::exec());
 	ui->setupUi(this);
 //	_client = client;
-	active_chat = new Chat(User(0, "Name"), 12);
+
+	model = new Model_Chats();
+	ui->chats->setModel(model);
+	ui->chats->setSelectionMode(QAbstractItemView::SingleSelection);
 //	Chat comp;
 //	foreach (comp, _client->room) {
 //		ui->listWidget->addItem(comp.get_companion_name());
@@ -55,5 +60,24 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_action_3_triggered()
 {
-	close();
+	emit quit_client();
+}
+
+void MainWindow::create_client(const string login, const string password, const unsigned ID){
+	client = new Client(ID, login, login, password);
+	active_chat = &(*(client->room.begin()));
+	show();
+}
+
+void MainWindow::on_quit_user_triggered()
+{
+	delete client;
+	active_chat = nullptr;
+	emit close_client();
+	hide();
+}
+
+void MainWindow::on_chats_clicked(const QModelIndex &index)
+{
+
 }

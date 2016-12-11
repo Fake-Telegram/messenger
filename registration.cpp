@@ -16,6 +16,7 @@ Registration::~Registration()
 
 void Registration::registration_status(const bool result){
 	if(result){
+		emit close_registration();
 		close();
 	}else{
 		ui->error->setStyleSheet("QLabel {color: red}");
@@ -59,5 +60,6 @@ void Registration::on_pushButton_clicked()
 
 void Registration::on_pushButton_2_clicked()
 {
-	close();
+	hide();
+	emit close_registration();
 }

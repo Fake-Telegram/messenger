@@ -26,7 +26,10 @@ SOURCES += main.cpp\
     authorization.cpp \
     networkl.cpp \
     thread_pool.cpp \
-    registration.cpp
+    registration.cpp \
+    messenger.cpp \
+    model_chats.cpp \
+    chat_delegate.cpp
 
 HEADERS  += mainwindow.h \
     addfriend.h \
@@ -38,9 +41,13 @@ HEADERS  += mainwindow.h \
     network.h \
     thread_pool.h \
     settings.h \
-    registration.h
+    registration.h \
+    messenger.h \
+    model_chats.h \
+    chat_delegate.h
 
 FORMS    += mainwindow.ui \
     addfriend.ui \
     authorization.ui \
-    registration.ui
+    registration.ui \
+    dialog.ui

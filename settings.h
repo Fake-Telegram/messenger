@@ -18,7 +18,7 @@ enum commands{
 	MESSAGE,
 	ADD_FRIEND,
 	FIND_FRIEND,
-	CREAT_CHAT,
+	CREATE_CHAT,
 	EXIT,
 	// Servsr's answer.
 	NEW_FRIEND,

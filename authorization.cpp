@@ -16,7 +16,7 @@ Authorization::~Authorization()
 
 void Authorization::on_Exit_clicked()
 {
-	exit(5);
+	emit quit();
 }
 
 void Authorization::on_login_clicked()
@@ -42,7 +42,10 @@ void Authorization::on_login_clicked()
 void Authorization::login_result(const bool result, const unsigned ID_User){
 	cout << "login result: " << result << "\nID: " << ID_User << endl;
 	if(result){
-		close();
+		emit auth_user(ui->Login->text().toStdString(), ui->Password->text().toStdString(), ID_User);
+		ui->Password->clear();
+		hide();
+		emit close();
 	}else{
 		ui->infomation->setStyleSheet("QLabel {color: red}");
 		ui->infomation->setText("Неверный логин или пароль.");
@@ -52,6 +55,7 @@ void Authorization::login_result(const bool result, const unsigned ID_User){
 
 void Authorization::on_registration_clicked()
 {
-	Registration reg;
-	reg.exec();
+
+	emit open_registration();
+	hide();
 }

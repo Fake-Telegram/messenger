@@ -3,6 +3,7 @@
 #include "client.h"
 #include "user.h"
 #include "network.h"
+#include "messenger.h"
 #include <QObject>
 #include <QApplication>
 #include <thread_pool.h>
@@ -12,6 +13,8 @@ boost::shared_ptr<boost::asio::io_service> io_service(
 		new boost::asio::io_service
 		);
 Network net(io_service);
+
+Client *client = nullptr;
 
 
 int main(int argc, char *argv[]){
@@ -26,13 +29,15 @@ int main(int argc, char *argv[]){
 	thread_pool.start();
 	net.get_message();
 	QApplication a(argc, argv);
-	Authorization aut;
+//	Authorization aut;
 	//QObject::connect(&net, &Network::result_authorization, &aut, &Authorization::login_result);
-	aut.exec();
-
-	MainWindow w;
+//	aut.exec();
+	messenger mes;
+	QObject::connect(&mes, &messenger::quit, &a, &QApplication::quit);
+	mes.init();
+	//MainWindow w;
 	//    io_service->dispatch(boost::bind(&MainWindow::show, &w));
-	w.show();
-	io_service->dispatch(boost::bind(&MainWindow::show, &w));
+	//w.show();
+	//io_service->dispatch(boost::bind(&MainWindow::show, &w));
 	return a.exec();
 }

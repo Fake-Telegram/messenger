@@ -15,6 +15,9 @@ class Registration : public QDialog
 {
 	Q_OBJECT
 
+signals:
+	void close_registration();
+
 public slots:
 	void registration_status(const bool result);
 

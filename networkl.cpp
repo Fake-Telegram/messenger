@@ -166,7 +166,7 @@ void Network::get_signal(const string &json){
 			break;
 		case MESSAGE:
 			emit recv_mess(doc["chatId"].GetUint(), Message(0, doc["messID"].GetUint(),
-					get_date_time(doc["datetime"].GetString()), doc["text"].GetString(), doc["otr"].GetBool() ));
+					get_date_time(doc["datetime"].GetString()), doc["text"].GetString(), false));
 			break;
 		case REGISTRATION:
 			emit result_registration(doc["result"].GetBool());
