@@ -17,8 +17,10 @@ private:
 public:
 	Message(const string &text, const bool &sendORrecv);
 	Message(const tm &datetime, const string &text, const bool &sendORrecv);
-	Message(const unsigned int &localId, const unsigned int &Id, const tm &datetime, const string &text, const bool &sendORrecv);
-	Message(const unsigned int &localId, const unsigned int &Id, const string &datetime, const string &text, const bool &sendORrecv);
+	Message(const unsigned int &localId, const unsigned int &Id, const tm &datetime,
+			const string &text, const bool &sendORrecv);
+	Message(const unsigned int &localId, const unsigned int &Id, const string &datetime,
+			const string &text, const bool &sendORrecv);
 	Message();
 	//Message() :text(""){};
 	Message(const Message &other);

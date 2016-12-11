@@ -3,6 +3,7 @@
 #define CHAT_H
 
 #include <list>
+#include <cstdio>
 #include "user.h"
 #include "message.h"
 #include "fstream"

@@ -6,7 +6,12 @@ Client::Client(const string& login, const string& password) : m_login(login), m_
 }
 Client::Client(const unsigned &userId, const string &name, const string& login, const string& password) : User(userId, name), m_login(login), m_password(password)
 {
-	cout << "newUser";
+	Chat chat(User(1, "123"), 1);
+	room.push_back(chat);
+	Chat chat_2(User(10, "rembo@mail.ru"), 3);
+	room.push_back(chat_2);
+	cout << "room.size = " << room.size() << endl;
+	cout << "newUser\n";
 }
 Client::~Client()
 {
@@ -68,4 +73,8 @@ bool Client::add_message(const unsigned chatId, const Message &mes){
 		return true;
 	}
 	return false;
+}
+
+unsigned Client::chats_count(){
+	return room.size();
 }
